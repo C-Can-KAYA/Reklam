@@ -1,4 +1,4 @@
-package com.lastSoftware.FirstProfessionalProject.Implementation.Interface;
+package com.lastSoftware.FirstProfessionalProject.Service.Interface;
 
 import com.lastSoftware.FirstProfessionalProject.Entity.Sofor;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;

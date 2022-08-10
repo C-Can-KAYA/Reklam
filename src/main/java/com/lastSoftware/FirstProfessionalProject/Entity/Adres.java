@@ -13,25 +13,25 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="reklam",
+        name="Adres",
         uniqueConstraints = @UniqueConstraint(
-                name = "link_unique",
-                columnNames = "link"
+                name = "id_unique",
+                columnNames = "id"
         )
 )
-public class Reklam {
+public class Adres {
     @Id
     @SequenceGenerator(
-            name= "reklam_sequence",
-            sequenceName = "reklam_sequence",
+            name= "adres_sequence",
+            sequenceName = "adres_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "reklam_sequence"
+            generator = "adres_sequence"
     )
     private Long id;
-    private String link;
-    private String ad;
-    private String reklamId;
+    private String il;
+    private String ilce;
+    private Integer postaKodu;
 }

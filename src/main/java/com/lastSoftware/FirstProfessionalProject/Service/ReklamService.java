@@ -1,23 +1,21 @@
-package com.lastSoftware.FirstProfessionalProject.Implementation;
+package com.lastSoftware.FirstProfessionalProject.Service;
 
 import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
 import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
-import com.lastSoftware.FirstProfessionalProject.FileUpload.Entity.FileDB;
-import com.lastSoftware.FirstProfessionalProject.FileUpload.Service.FileStorageService;
-import com.lastSoftware.FirstProfessionalProject.Implementation.Interface.IReklam;
+import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.IReklam;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.ReklamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.transaction.Transactional;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ReklamImpl implements IReklam {
+public class ReklamService implements IReklam {
     @Autowired
     ReklamRepository reklamRepository;
     @Autowired
@@ -30,10 +28,10 @@ public class ReklamImpl implements IReklam {
         try {
             FileDB fileDB =storageService.store(reklamBilgi);
             reklamRepository.save(iMapper.ReklamEntity(reklamBilgi,fileDB));
-            return ConstantMessage.basari;
+            return ConstantMessage.SUCCESS;
         } catch (IOException e) {
             System.out.println(e);
-            return ConstantMessage.error;
+            return ConstantMessage.ERROR;
         }
     }
 
@@ -42,9 +40,9 @@ public class ReklamImpl implements IReklam {
         try {
             reklamRepository.deleteById(id);
             storageService.deleteFileById(id);
-            return ConstantMessage.basari;
+            return ConstantMessage.SUCCESS;
         }catch (Exception e){
-            return ConstantMessage.error;
+            return ConstantMessage.ERROR;
         }
     }
 

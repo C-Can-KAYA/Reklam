@@ -1,4 +1,4 @@
-package com.lastSoftware.FirstProfessionalProject.FileUpload.Entity;
+package com.lastSoftware.FirstProfessionalProject.Entity;
 
 import org.hibernate.annotations.GenericGenerator;
 

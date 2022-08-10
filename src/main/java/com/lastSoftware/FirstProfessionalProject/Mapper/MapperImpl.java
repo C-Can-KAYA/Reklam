@@ -1,9 +1,7 @@
 package com.lastSoftware.FirstProfessionalProject.Mapper;
 
-import com.lastSoftware.FirstProfessionalProject.Entity.Minibus;
-import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
-import com.lastSoftware.FirstProfessionalProject.Entity.Sofor;
-import com.lastSoftware.FirstProfessionalProject.FileUpload.Entity.FileDB;
+import com.lastSoftware.FirstProfessionalProject.Entity.*;
+import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
 import org.springframework.stereotype.Service;
@@ -32,7 +30,18 @@ public class MapperImpl implements IMapper {
         sofor.setAd(soforBilgi.getAd());
         sofor.setSoyad(soforBilgi.getSoyad());
         sofor.setTckn(soforBilgi.getTckn());
+        sofor.setTel(soforBilgi.getTel());
         return sofor;
+    }
+
+    @Override
+    public Firma firmaEntitiy(FirmaBilgi firmaBilgi) {
+        Firma firma=new Firma();
+        firma.setId(firmaBilgi.getId());
+        firma.setFirmaAd(firmaBilgi.getAd());
+        firma.setSicilNo(firmaBilgi.getSicilNo());
+        firma.setAdres(firmaBilgi.getAdres());
+        return firma;
     }
 
     @Override

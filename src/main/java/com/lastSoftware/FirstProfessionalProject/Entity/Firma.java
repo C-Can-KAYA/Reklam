@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.utility.nullability.MaybeNull;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,10 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="Minibus",
+        name="Firma",
         uniqueConstraints = @UniqueConstraint(
-                name = "plaka_unique",
-                columnNames = "plaka"
+                name = "sicilNo_unique",
+                columnNames = "sicilNo"
         )
 )
 public class Firma {
@@ -34,9 +36,15 @@ public class Firma {
     private Long id;
     private String firmaAd;
     private String sicilNo;
-    @OneToMany(
+
+    @ManyToOne(
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private Adres adres;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     private List<Reklam> reklam;

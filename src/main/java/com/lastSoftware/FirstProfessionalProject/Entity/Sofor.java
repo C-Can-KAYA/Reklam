@@ -38,5 +38,6 @@ public class Sofor {
                 nullable = false
         )
         private Long tckn;
+        private Long tel;
 
 }

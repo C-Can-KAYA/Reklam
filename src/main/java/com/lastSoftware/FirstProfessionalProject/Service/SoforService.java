@@ -1,8 +1,8 @@
-package com.lastSoftware.FirstProfessionalProject.Implementation;
+package com.lastSoftware.FirstProfessionalProject.Service;
 
 import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
 import com.lastSoftware.FirstProfessionalProject.Entity.Sofor;
-import com.lastSoftware.FirstProfessionalProject.Implementation.Interface.ISofor;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.ISofor;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.SoforRepository;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SoforImpl implements ISofor {
+public class SoforService implements ISofor {
     @Autowired
     SoforRepository soforRepository;
     @Autowired
@@ -23,9 +23,9 @@ public class SoforImpl implements ISofor {
         try {
             soforRepository.save(iMapper.SoforEntitiy(sofor));
         } catch (Exception e) {
-            return ConstantMessage.error;
+            return ConstantMessage.ERROR;
         }
-        return ConstantMessage.basari;
+        return ConstantMessage.SUCCESS;
     }
 
     @Override
@@ -50,9 +50,9 @@ public class SoforImpl implements ISofor {
       try {
           soforRepository.deleteByRelationShip(id);
           soforRepository.deleteById(id);
-          return ConstantMessage.basari;
+          return ConstantMessage.SUCCESS;
       }catch (Exception e){
-          return ConstantMessage.error;
+          return ConstantMessage.ERROR;
       }
     }
 
@@ -62,9 +62,9 @@ public class SoforImpl implements ISofor {
             Sofor sofor= soforRepository.findIdWithTckn(id);
             soforRepository.deleteByRelationShip(sofor.getSoforId());
             soforRepository.deleteByTckn(id);
-            return ConstantMessage.basari;
+            return ConstantMessage.SUCCESS;
         }catch (Exception e){
-            return ConstantMessage.error;
+            return ConstantMessage.ERROR;
         }
     }
 }

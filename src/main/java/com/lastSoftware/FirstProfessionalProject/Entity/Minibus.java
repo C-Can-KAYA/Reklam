@@ -34,16 +34,14 @@ public class Minibus {
     private Long id;
     private String marka;
     private String model;
-    private Integer hat;
-    @OneToMany(
+    private String hat;
+    @ManyToMany(
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
             fetch = FetchType.LAZY
     )
     private List<Sofor> sofor;
-    @OneToMany(
+    @ManyToMany(
             cascade = CascadeType.ALL,
-            orphanRemoval = true,
             fetch = FetchType.LAZY
     )
     private List<Reklam> reklam;

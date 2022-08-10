@@ -1,6 +1,6 @@
 package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
-import com.lastSoftware.FirstProfessionalProject.Implementation.Interface.IMinibus;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -32,9 +32,26 @@ public class MinibusController {
         return new ResponseEntity<>(minibus.deleteById(id), HttpStatus.OK);
     }
 
+    @PostMapping(path="/hatList/{il}")
+    public ResponseEntity<Object> hatList(@PathVariable String il){
+        return new ResponseEntity<>(minibus.hatList(il), HttpStatus.OK);
+    }
+
     @GetMapping(path = "/findAll")
     public ResponseEntity<Object> findAll()
     {
         return new ResponseEntity<>(minibus.minibusList(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/findByNumberPlate/{number}")
+    public ResponseEntity<Object> findByNumberPlate(@PathVariable String number)
+    {
+        return new ResponseEntity<>(minibus.findByNumberPlate(number), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/findAll/il")
+    public ResponseEntity<Object> findAllIl()
+    {
+        return new ResponseEntity<>(minibus.ilList(), HttpStatus.OK);
     }
 }

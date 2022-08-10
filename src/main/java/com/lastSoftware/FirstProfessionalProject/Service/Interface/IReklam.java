@@ -1,4 +1,4 @@
-package com.lastSoftware.FirstProfessionalProject.Implementation.Interface;
+package com.lastSoftware.FirstProfessionalProject.Service.Interface;
 
 import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
 import org.springframework.web.multipart.MultipartFile;

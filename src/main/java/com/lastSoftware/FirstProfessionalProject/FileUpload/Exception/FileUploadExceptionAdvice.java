@@ -1,6 +1,7 @@
 package com.lastSoftware.FirstProfessionalProject.FileUpload.Exception;
 
-import com.lastSoftware.FirstProfessionalProject.FileUpload.Message.ResponseMessage;
+import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.ResponseMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,6 +15,6 @@ public class FileUploadExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<ResponseMessage> handleMaxSizeException(MaxUploadSizeExceededException exc) {
-        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage("File too large!"));
+        return ResponseEntity.status(HttpStatus.valueOf(ConstantMessage.EXCEPTION_FAİL)).body(new ResponseMessage(ConstantMessage.TO_LARGE));
     }
 }

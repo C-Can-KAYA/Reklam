@@ -1,11 +1,11 @@
-package com.lastSoftware.FirstProfessionalProject.FileUpload.Service;
+package com.lastSoftware.FirstProfessionalProject.Service;
 
 import java.io.IOException;
 import java.util.stream.Stream;
 
 import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
-import com.lastSoftware.FirstProfessionalProject.FileUpload.Entity.FileDB;
-import com.lastSoftware.FirstProfessionalProject.FileUpload.Repository.FileDBRepository;
+import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
+import com.lastSoftware.FirstProfessionalProject.Repository.FileDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -36,8 +36,8 @@ public class FileStorageService {
     public String deleteFileById(String id) {
         if (fileDBRepository.existsById(id)) {
             fileDBRepository.deleteById(id);
-            return ConstantMessage.delete;
+            return ConstantMessage.DELETE;
         }
-        return ConstantMessage.notfound;
+        return ConstantMessage.NOTFOUND;
     }
 }

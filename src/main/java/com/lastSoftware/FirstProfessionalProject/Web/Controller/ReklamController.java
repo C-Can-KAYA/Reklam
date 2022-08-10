@@ -1,15 +1,22 @@
 package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
-import com.lastSoftware.FirstProfessionalProject.Implementation.Interface.IReklam;
+import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
+import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
+import com.lastSoftware.FirstProfessionalProject.Service.FileStorageService;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.IReklam;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.ResponseMessage;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.NoSuchElementException;
 
 @RestController
 @AllArgsConstructor
@@ -20,6 +27,9 @@ public class ReklamController {
 
     @Autowired
     IReklam reklam;
+
+    @Autowired
+    private FileStorageService storageService;
 
     @PostMapping(path = "/insert", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Object> insert(@RequestParam("file") MultipartFile reklamBilgi) {
@@ -35,6 +45,19 @@ public class ReklamController {
     public ResponseEntity<Object> findAll()
     {
         return new ResponseEntity<>(reklam.list(), HttpStatus.OK);
+    }
+
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Object> getFile(@PathVariable String id) {
+
+        try {
+            FileDB fileDB = storageService.getFile(id);
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "ekli; dosya adı=\"" + fileDB.getName() + "\"")
+                    .body(fileDB.getData());
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(e.getMessage()));
+        }
     }
 
 }

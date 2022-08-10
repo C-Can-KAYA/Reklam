@@ -1,4 +1,4 @@
-package com.lastSoftware.FirstProfessionalProject.FileUpload.Message;
+package com.lastSoftware.FirstProfessionalProject.Web.Response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
