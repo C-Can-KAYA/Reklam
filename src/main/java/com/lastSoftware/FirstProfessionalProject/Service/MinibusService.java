@@ -47,6 +47,11 @@ public class MinibusService implements IMinibus {
     }
 
     @Override
+    public Object findById(Long id) {
+        return minibusRepository.findById(id);
+    }
+
+    @Override
     public String deleteById(Long id) {
         try {
             minibusRepository.deleteById(id);

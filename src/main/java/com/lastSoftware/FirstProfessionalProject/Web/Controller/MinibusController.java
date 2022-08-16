@@ -49,6 +49,12 @@ public class MinibusController {
         return new ResponseEntity<>(minibus.findByNumberPlate(number), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/findById/{number}")
+    public ResponseEntity<Object> findById(@PathVariable Long number)
+    {
+        return new ResponseEntity<>(minibus.findById(number), HttpStatus.OK);
+    }
+
     @GetMapping(path = "/findAll/il")
     public ResponseEntity<Object> findAllIl()
     {

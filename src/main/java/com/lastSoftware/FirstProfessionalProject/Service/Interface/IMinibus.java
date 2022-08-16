@@ -13,4 +13,5 @@ public interface IMinibus {
     public List<Minibus> minibusList();
     public Enum<Hat>[] ilList();
     public List<String> hatList(String il);
+    public Object findById(Long id);
 }
