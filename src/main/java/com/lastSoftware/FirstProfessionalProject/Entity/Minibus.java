@@ -35,12 +35,12 @@ public class Minibus {
     private String marka;
     private String model;
     private String hat;
-    @ManyToMany(
+    @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Sofor> sofor;
-    @ManyToMany(
+    private List<Sofor> soforList;
+    @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
