@@ -18,7 +18,8 @@ public class MapperImpl implements IMapper {
             minibus.setMarka(minibusBilgi.getMarka());
             minibus.setModel(minibusBilgi.getModel());
             minibus.setHat(minibusBilgi.getHat());
-            minibus.setSofor(minibusBilgi.getSofor());
+            minibus.setReklam(minibusBilgi.getReklam());
+            minibus.setSoforList(minibusBilgi.getSofor());
             minibus.setPlaka(minibusBilgi.getPlaka());
             return minibus;
     }
