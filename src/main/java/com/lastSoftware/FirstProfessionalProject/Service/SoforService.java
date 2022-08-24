@@ -48,7 +48,6 @@ public class SoforService implements ISofor {
     @Override
     public String deleteById(Long id){
       try {
-          soforRepository.deleteByRelationShip(id);
           soforRepository.deleteById(id);
           return ConstantMessage.SUCCESS;
       }catch (Exception e){
