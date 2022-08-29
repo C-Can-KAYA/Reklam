@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -38,7 +37,7 @@ public class ReklamService implements IReklam {
     @Override
     public String deleteById(String id) {
         try {
-            reklamRepository.deleteById(id);
+            reklamRepository.deleteById(Long.valueOf(id));
             storageService.deleteFileById(id);
             return ConstantMessage.SUCCESS;
         }catch (Exception e){

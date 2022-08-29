@@ -40,7 +40,10 @@ public class MapperImpl implements IMapper {
         firma.setId(firmaBilgi.getId());
         firma.setFirmaAd(firmaBilgi.getAd());
         firma.setSicilNo(firmaBilgi.getSicilNo());
-        firma.setAdres(firmaBilgi.getAdres());
+        Adres adres=new Adres();
+        adres.setIl(firmaBilgi.getAdres().getIl());
+        adres.setIlce(firmaBilgi.getAdres().getIlce());
+        firma.setAdres(adres);
         return firma;
     }
 
