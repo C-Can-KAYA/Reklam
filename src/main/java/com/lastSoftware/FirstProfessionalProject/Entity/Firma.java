@@ -1,5 +1,6 @@
 package com.lastSoftware.FirstProfessionalProject.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class Firma {
     private String firmaAd;
     private String sicilNo;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY

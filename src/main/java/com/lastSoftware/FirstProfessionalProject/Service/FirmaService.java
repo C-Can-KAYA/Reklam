@@ -6,7 +6,6 @@ import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.FirmaRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IFirma;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
-import com.lastSoftware.FirstProfessionalProject.Web.Response.FirmaBilgileri;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +47,7 @@ public class FirmaService implements IFirma {
     }
 
     @Override
-    public List<FirmaBilgileri> list() {
-            return firmaRepository.firmaList();
+    public List<Firma> list() {
+            return firmaRepository.findAll();
     }
 }

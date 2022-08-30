@@ -7,6 +7,9 @@ import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class MapperImpl implements IMapper {
 
@@ -43,6 +46,7 @@ public class MapperImpl implements IMapper {
         Adres adres=new Adres();
         adres.setIl(firmaBilgi.getAdres().getIl());
         adres.setIlce(firmaBilgi.getAdres().getIlce());
+        adres.setPostaKodu(firmaBilgi.getAdres().getPostaKodu());
         firma.setAdres(adres);
         return firma;
     }

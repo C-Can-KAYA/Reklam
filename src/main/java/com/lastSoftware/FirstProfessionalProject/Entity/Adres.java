@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
@@ -19,7 +20,7 @@ import javax.persistence.*;
                 columnNames = "id"
         )
 )
-public class Adres {
+public class Adres implements Serializable {
     @Id
     @SequenceGenerator(
             name= "adres_sequence",
