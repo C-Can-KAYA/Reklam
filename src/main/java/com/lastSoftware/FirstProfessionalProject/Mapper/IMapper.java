@@ -10,5 +10,5 @@ public interface IMapper {
     Minibus MinibusEntity(MinibusBilgi minibusBilgi);
     Sofor SoforEntitiy(SoforBilgi soforBilgi);
     Firma firmaEntitiy(FirmaBilgi firmaBilgi);
-    Reklam ReklamEntity(MultipartFile reklamBilgi, FileDB fileDB);
+    Reklam ReklamEntity(MultipartFile reklamBilgi, FileDB fileDB,Long firma);
 }

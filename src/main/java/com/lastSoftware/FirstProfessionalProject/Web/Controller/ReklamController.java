@@ -1,7 +1,7 @@
 package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
-import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
+import com.lastSoftware.FirstProfessionalProject.Entity.Firma;
 import com.lastSoftware.FirstProfessionalProject.Service.FileStorageService;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IReklam;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.ResponseMessage;
@@ -31,14 +31,19 @@ public class ReklamController {
     @Autowired
     private FileStorageService storageService;
 
-    @PostMapping(path = "/insert", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Object> insert(@RequestParam("file") MultipartFile reklamBilgi) {
-        return new ResponseEntity<>(reklam.add(reklamBilgi), HttpStatus.OK);
+    @PostMapping(path = "/insert/{firma}")
+    public ResponseEntity<Object> insert(@RequestParam("multipartFile") MultipartFile multipartFile,@PathVariable("firma") Long firma) {
+        return new ResponseEntity<>(reklam.add(multipartFile,firma), HttpStatus.OK);
     }
 
     @PostMapping(path="/deleteById/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable String id){
         return new ResponseEntity<>(reklam.deleteById(id), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/findById/{id}")
+    public ResponseEntity<Object> getFile(@PathVariable Long id) {
+        return new ResponseEntity<>(reklam.findById(id), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findAll")
@@ -47,8 +52,8 @@ public class ReklamController {
         return new ResponseEntity<>(reklam.list(), HttpStatus.OK);
     }
 
-    @GetMapping("/findById/{id}")
-    public ResponseEntity<Object> getFile(@PathVariable String id) {
+    @GetMapping("/findByIdFile/{id}")
+    public ResponseEntity<Object> getfindByFile(@PathVariable String id) {
 
         try {
             FileDB fileDB = storageService.getFile(id);

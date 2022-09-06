@@ -1,18 +1,20 @@
 package com.lastSoftware.FirstProfessionalProject.Mapper;
 
 import com.lastSoftware.FirstProfessionalProject.Entity.*;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.IFirma;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MapperImpl implements IMapper {
-
+    @Autowired
+    IFirma firma;
 
     @Override
     public Minibus MinibusEntity(MinibusBilgi minibusBilgi) {
@@ -52,12 +54,23 @@ public class MapperImpl implements IMapper {
     }
 
     @Override
-    public Reklam ReklamEntity(MultipartFile reklamBilgi, FileDB fileDB){
+    public Reklam ReklamEntity(MultipartFile reklamBilgi, FileDB fileDB,Long id){
         Reklam reklam=new Reklam();
         reklam.setAd(reklamBilgi.getOriginalFilename());
-        String reklamLink="http://localhost:8080/files/"+fileDB.getId();
+        String reklamLink="http://localhost:8080/reklam/findByIdFile/"+fileDB.getId();
         reklam.setLink(reklamLink);
         reklam.setReklamId(fileDB.getId());
+        Optional<Firma> firmaEkleme= firma.findById(id);
+        Firma firma=new Firma();
+        firma.setId(firmaEkleme.get().getId());
+        firma.setFirmaAd(firmaEkleme.get().getFirmaAd());
+        firma.setSicilNo(firmaEkleme.get().getSicilNo());
+        Adres adres=new Adres();
+        adres.setIl(firmaEkleme.get().getAdres().getIl());
+        adres.setIlce(firmaEkleme.get().getAdres().getIlce());
+        adres.setPostaKodu(firmaEkleme.get().getAdres().getPostaKodu());
+        firma.setAdres(adres);
+        reklam.setFirma(firma);
         return reklam;
     }
 }

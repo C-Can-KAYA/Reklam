@@ -1,6 +1,7 @@
 package com.lastSoftware.FirstProfessionalProject.Service;
 
 import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
+import com.lastSoftware.FirstProfessionalProject.Entity.Firma;
 import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
 import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IReklam;
@@ -23,10 +24,10 @@ public class ReklamService implements IReklam {
     FileStorageService storageService;
 
     @Override
-    public String add(MultipartFile reklamBilgi) {
+    public String add(MultipartFile reklamBilgi, Long firma) {
         try {
             FileDB fileDB =storageService.store(reklamBilgi);
-            reklamRepository.save(iMapper.ReklamEntity(reklamBilgi,fileDB));
+            reklamRepository.save(iMapper.ReklamEntity(reklamBilgi,fileDB,firma));
             return ConstantMessage.SUCCESS;
         } catch (IOException e) {
             System.out.println(e);
@@ -50,5 +51,10 @@ public class ReklamService implements IReklam {
             List<Reklam> reklamList =
                     reklamRepository.findAll();
             return reklamList;
+    }
+
+    @Override
+    public Object findById(Long id) {
+        return reklamRepository.findById(id);
     }
 }

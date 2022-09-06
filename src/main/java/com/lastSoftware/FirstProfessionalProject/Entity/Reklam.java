@@ -34,4 +34,7 @@ public class Reklam {
     private String link;
     private String ad;
     private String reklamId;
+    @ManyToOne
+    @JoinColumn(name = "firma_id")
+    private Firma firma;
 }
