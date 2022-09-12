@@ -34,7 +34,7 @@ public class MinibusController {
 
     @PostMapping(path="/hatList/{il}")
     public ResponseEntity<Object> hatList(@PathVariable String il){
-        return new ResponseEntity<>(minibus.hatList(il), HttpStatus.OK);
+        return new ResponseEntity<>(minibus.hatList(il.toUpperCase()), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findAll")

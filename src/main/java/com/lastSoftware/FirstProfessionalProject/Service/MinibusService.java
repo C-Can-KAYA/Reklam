@@ -27,6 +27,7 @@ public class MinibusService implements IMinibus {
         try {
             minibusRepository.save(iMapper.MinibusEntity(minibusBilgi));
         } catch (Exception e) {
+            System.out.println(e);
             return ConstantMessage.ERROR;
         }
         return ConstantMessage.SUCCESS;

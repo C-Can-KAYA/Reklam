@@ -40,7 +40,7 @@ public class Minibus {
             fetch = FetchType.LAZY
     )
     private List<Sofor> sofor;
-    @ManyToMany(
+    @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
