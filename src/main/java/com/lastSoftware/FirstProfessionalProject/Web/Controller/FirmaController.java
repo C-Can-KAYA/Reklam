@@ -40,6 +40,12 @@ public class FirmaController {
         return new ResponseEntity<>(firma.findById(id), HttpStatus.OK);
     }
 
+    @PostMapping(path="/updateFirma")
+    public ResponseEntity<Object> updateFirma(@RequestBody FirmaBilgi firmaBilgi){
+        System.out.println(firmaBilgi);
+        return new ResponseEntity<>(firma.updateFirma(firmaBilgi), HttpStatus.OK);
+    }
+
     @PostMapping(path="/deleteById/{id}")
     public ResponseEntity<Object> deleteById(@PathVariable Long id){
         return new ResponseEntity<>(firma.deleteById(id), HttpStatus.OK);

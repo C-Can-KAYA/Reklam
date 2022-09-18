@@ -11,5 +11,6 @@ public interface IFirma {
     String firmaAdd(FirmaBilgi firmaBilgi);
     String deleteById(Long id);
     Optional<Firma> findById(Long number);
+    String updateFirma(FirmaBilgi firmaBilgi);
     List<Firma> list();
 }
