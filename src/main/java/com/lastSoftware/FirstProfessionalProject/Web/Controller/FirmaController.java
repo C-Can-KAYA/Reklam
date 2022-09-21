@@ -42,7 +42,6 @@ public class FirmaController {
 
     @PostMapping(path="/updateFirma")
     public ResponseEntity<Object> updateFirma(@RequestBody FirmaBilgi firmaBilgi){
-        System.out.println(firmaBilgi);
         return new ResponseEntity<>(firma.updateFirma(firmaBilgi), HttpStatus.OK);
     }
 

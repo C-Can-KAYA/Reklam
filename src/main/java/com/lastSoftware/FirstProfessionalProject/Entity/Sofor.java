@@ -13,11 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="Sofor",
-        uniqueConstraints = @UniqueConstraint(
-                name = "tckn_unique",
-                columnNames = "tckn"
-        )
+        name="Sofor"
 )
 public class Sofor {
         @Id

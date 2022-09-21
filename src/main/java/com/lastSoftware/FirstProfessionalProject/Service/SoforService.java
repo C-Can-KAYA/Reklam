@@ -57,6 +57,16 @@ public class SoforService implements ISofor {
     }
 
     @Override
+    public String updateSofor(SoforBilgi soforBilgi) {
+        try {
+            soforRepository.save(iMapper.SoforEntitiy(soforBilgi));
+        } catch (Exception e) {
+            return ConstantMessage.ERROR;
+        }
+        return ConstantMessage.SUCCESS;
+    }
+
+    @Override
     public String deleteByTckn(Long id){
         try {
             Sofor sofor= soforRepository.findIdWithTckn(id);

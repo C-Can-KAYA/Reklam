@@ -12,4 +12,5 @@ public interface ISofor {
     Object findByTckn(Long tckn);
     String deleteByTckn(Long id);
     String deleteById(Long id);
+    String updateSofor(SoforBilgi soforBilgi);
 }

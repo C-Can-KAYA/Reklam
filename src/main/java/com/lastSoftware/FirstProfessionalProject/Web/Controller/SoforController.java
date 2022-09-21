@@ -2,6 +2,7 @@ package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.ISofor;
+import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,11 @@ public class SoforController
     @PostMapping(path="/findById/{id}")
     public ResponseEntity<Object> findById(@PathVariable Long id){
         return new ResponseEntity<>(sofor.findById(id), HttpStatus.OK);
+    }
+
+    @PutMapping(path="/updateSofor")
+    public ResponseEntity<Object> updateSofor(@RequestBody SoforBilgi soforBilgi){
+        return new ResponseEntity<>(sofor.updateSofor(soforBilgi), HttpStatus.OK);
     }
 
     @PostMapping(path="/findByTckn/{tckn}")

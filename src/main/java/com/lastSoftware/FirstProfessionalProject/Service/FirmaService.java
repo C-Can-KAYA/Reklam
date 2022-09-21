@@ -49,7 +49,6 @@ public class FirmaService implements IFirma {
     @Override
     public String updateFirma(FirmaBilgi firmaBilgi) {
         try {
-
             firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
         } catch (Exception e) {
             return ConstantMessage.ERROR;
