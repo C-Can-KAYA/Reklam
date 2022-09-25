@@ -9,6 +9,7 @@ public class MinibusBilgi {
     private String marka;
     private String model;
     private String hat;
+    private String il;
     private String plaka;
     private Long sofor;
     private List<Long> reklam;
