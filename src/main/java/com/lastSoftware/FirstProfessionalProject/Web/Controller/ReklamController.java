@@ -1,7 +1,6 @@
 package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
-import com.lastSoftware.FirstProfessionalProject.Entity.Firma;
 import com.lastSoftware.FirstProfessionalProject.Service.FileStorageService;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IReklam;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.ResponseMessage;

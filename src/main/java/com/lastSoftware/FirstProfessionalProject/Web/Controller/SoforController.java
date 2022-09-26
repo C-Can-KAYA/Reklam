@@ -2,7 +2,6 @@ package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.ISofor;
-import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;

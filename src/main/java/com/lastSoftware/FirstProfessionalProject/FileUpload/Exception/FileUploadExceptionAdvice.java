@@ -15,6 +15,6 @@ public class FileUploadExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<ResponseMessage> handleMaxSizeException(MaxUploadSizeExceededException exc) {
-        return ResponseEntity.status(HttpStatus.valueOf(ConstantMessage.EXCEPTION_FAİL)).body(new ResponseMessage(ConstantMessage.TO_LARGE));
+        return ResponseEntity.status(HttpStatus.valueOf(ConstantMessage.EXCEPTION_FAIL)).body(new ResponseMessage(ConstantMessage.TO_LARGE));
     }
 }

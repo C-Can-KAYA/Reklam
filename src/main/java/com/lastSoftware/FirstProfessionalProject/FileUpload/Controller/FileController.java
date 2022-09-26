@@ -72,5 +72,4 @@ public class FileController {
         message = storageService.deleteFileById(id);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
     }
-
 }

@@ -1,7 +1,6 @@
 package com.lastSoftware.FirstProfessionalProject.Service;
 
 import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
-import com.lastSoftware.FirstProfessionalProject.Entity.Firma;
 import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
 import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IReklam;
