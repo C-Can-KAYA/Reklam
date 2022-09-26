@@ -3,10 +3,12 @@ package com.lastSoftware.FirstProfessionalProject.Service;
 import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
 import com.lastSoftware.FirstProfessionalProject.Constants.Hat;
 import com.lastSoftware.FirstProfessionalProject.Entity.Minibus;
+import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.MinibusRepository;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,8 +65,17 @@ public class MinibusService implements IMinibus {
     }
 
     @Override
-    public Minibus findByNumberPlate(String number) {
-        return minibusRepository.findByNumberPlate(number);
+    public List<ReklamResponse> findByNumberPlate(String number) {
+        List<Minibus> minibus=minibusRepository.findByNumberPlate(number);
+        List<ReklamResponse> reklamResponse=new ArrayList<>();
+        for(Reklam reklam:minibus.get(0).getReklam()){
+            ReklamResponse response=new ReklamResponse();
+            response.setFirmaAd(reklam.getFirma().getFirmaAd());
+            response.setReklamId(reklam.getLink());
+            response.setReklamLink(reklam.getReklamId());
+            reklamResponse.add(response);
+        }
+        return reklamResponse;
     }
 
     @Override

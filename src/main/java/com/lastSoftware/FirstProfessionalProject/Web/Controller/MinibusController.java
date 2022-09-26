@@ -2,6 +2,7 @@ package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -44,9 +47,9 @@ public class MinibusController {
     }
 
     @GetMapping(path = "/findByNumberPlate/{number}")
-    public ResponseEntity<Object> findByNumberPlate(@PathVariable String number)
+    public ResponseEntity<List<ReklamResponse>> findByNumberPlate(@PathVariable String number)
     {
-        return new ResponseEntity<>(minibus.findByNumberPlate(number), HttpStatus.OK);
+        return new ResponseEntity<List<ReklamResponse>>(minibus.findByNumberPlate(number), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findById/{number}")
