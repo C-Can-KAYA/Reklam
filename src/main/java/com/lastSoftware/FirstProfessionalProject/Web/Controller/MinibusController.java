@@ -25,42 +25,42 @@ public class MinibusController {
     IMinibus minibus;
 
     @PostMapping(path = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> insert(@RequestBody MinibusBilgi minibusBilgi)
-    {
+    public ResponseEntity<Object> insert(@RequestBody MinibusBilgi minibusBilgi) {
         return new ResponseEntity<>(minibus.minibusAdd(minibusBilgi), HttpStatus.OK);
     }
 
-    @PostMapping(path="/deleteById/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable Long id){
+    @PostMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> update(@RequestBody MinibusBilgi minibusBilgi) {
+        return new ResponseEntity<>(minibus.minibusUpdate(minibusBilgi), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/deleteById/{id}")
+    public ResponseEntity<Object> deleteById(@PathVariable Long id) {
         return new ResponseEntity<>(minibus.deleteById(id), HttpStatus.OK);
     }
 
-    @PostMapping(path="/hatList/{il}")
-    public ResponseEntity<Object> hatList(@PathVariable String il){
+    @PostMapping(path = "/hatList/{il}")
+    public ResponseEntity<Object> hatList(@PathVariable String il) {
         return new ResponseEntity<>(minibus.hatList(il.toUpperCase()), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findAll")
-    public ResponseEntity<Object> findAll()
-    {
+    public ResponseEntity<Object> findAll() {
         return new ResponseEntity<>(minibus.minibusList(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findByNumberPlate/{number}")
-    public ResponseEntity<List<ReklamResponse>> findByNumberPlate(@PathVariable String number)
-    {
+    public ResponseEntity<List<ReklamResponse>> findByNumberPlate(@PathVariable String number) {
         return new ResponseEntity<List<ReklamResponse>>(minibus.findByNumberPlate(number), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findById/{number}")
-    public ResponseEntity<Object> findById(@PathVariable Long number)
-    {
+    public ResponseEntity<Object> findById(@PathVariable Long number) {
         return new ResponseEntity<>(minibus.findById(number), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findAll/il")
-    public ResponseEntity<Object> findAllIl()
-    {
+    public ResponseEntity<Object> findAllIl() {
         return new ResponseEntity<>(minibus.ilList(), HttpStatus.OK);
     }
 }

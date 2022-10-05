@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ISofor {
     String soforAdd(SoforBilgi sofor);
+    String soforUpdate(SoforBilgi sofor);
     List<Sofor> soforList();
     Object findById(Long id);
     Object findByTckn(Long tckn);

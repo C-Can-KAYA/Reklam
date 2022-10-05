@@ -4,9 +4,9 @@ import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
 import com.lastSoftware.FirstProfessionalProject.Constants.Hat;
 import com.lastSoftware.FirstProfessionalProject.Entity.Minibus;
 import com.lastSoftware.FirstProfessionalProject.Entity.Reklam;
-import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.MinibusRepository;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,17 +36,17 @@ public class MinibusService implements IMinibus {
     }
 
     @Override
-    public Enum<Hat>[] ilList(){
+    public Enum<Hat>[] ilList() {
         return Hat.values();
     }
 
     @Override
     public List<String> hatList(String il) {
-            List<String> hatList = new ArrayList<>();
-            for (String hat : Hat.valueOf(il).getMembers()) {
-                hatList.add(hat);
-            }
-            return hatList;
+        List<String> hatList = new ArrayList<>();
+        for (String hat : Hat.valueOf(il).getMembers()) {
+            hatList.add(hat);
+        }
+        return hatList;
     }
 
     @Override
@@ -55,9 +55,28 @@ public class MinibusService implements IMinibus {
     }
 
     @Override
+    public Object minibusUpdate(MinibusBilgi minibusBilgi) {
+        try {
+            minibusRepository.deleteByMinibusIdForReklam(minibusBilgi.getId());
+            minibusRepository.deleteByMinibusIdForSofor(minibusBilgi.getId());
+            minibusRepository.minibusInsertForSofor(minibusBilgi.getId(), minibusBilgi.getSofor());
+            for (Long reklam : minibusBilgi.getReklam()) {
+                minibusRepository.minibusInsertForReklam(minibusBilgi.getId(), reklam);
+            }
+            minibusRepository.minibusUpdateForCarAndHat(
+                    minibusBilgi.getId(), minibusBilgi.getHat(),minibusBilgi.getIl(), minibusBilgi.getMarka(), minibusBilgi.getModel(), minibusBilgi.getPlaka());
+        } catch (Exception e) {
+            return ConstantMessage.ERROR;
+        }
+        return ConstantMessage.SUCCESS;
+    }
+
+    @Override
     public String deleteById(Long id) {
         try {
-            minibusRepository.deleteById(id);
+            minibusRepository.deleteByMinibusIdForSofor(id);
+            minibusRepository.deleteByMinibusIdForReklam(id);
+            minibusRepository.deleteByIdForMinibus(id);
             return ConstantMessage.SUCCESS;
         } catch (Exception e) {
             return ConstantMessage.ERROR;
@@ -66,10 +85,10 @@ public class MinibusService implements IMinibus {
 
     @Override
     public List<ReklamResponse> findByNumberPlate(String number) {
-        List<Minibus> minibus=minibusRepository.findByNumberPlate(number);
-        List<ReklamResponse> reklamResponse=new ArrayList<>();
-        for(Reklam reklam:minibus.get(0).getReklam()){
-            ReklamResponse response=new ReklamResponse();
+        List<Minibus> minibus = minibusRepository.findByNumberPlate(number);
+        List<ReklamResponse> reklamResponse = new ArrayList<>();
+        for (Reklam reklam : minibus.get(0).getReklam()) {
+            ReklamResponse response = new ReklamResponse();
             response.setFirmaAd(reklam.getFirma().getFirmaAd());
             response.setReklamId(reklam.getLink());
             response.setReklamLink(reklam.getReklamId());

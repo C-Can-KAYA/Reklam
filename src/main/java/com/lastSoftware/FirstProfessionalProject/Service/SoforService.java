@@ -29,31 +29,41 @@ public class SoforService implements ISofor {
     }
 
     @Override
-    public List<Sofor> soforList(){
-        List<Sofor> soforList =
-                soforRepository.findAll();
-            return soforList;
+    public String soforUpdate(SoforBilgi sofor) {
+        try {
+            soforRepository.findByIdAndUpdate(sofor.getAd(), sofor.getSoyad(), sofor.getTckn(), sofor.getTel(), sofor.getId());
+        } catch (Exception e) {
+            return ConstantMessage.ERROR;
+        }
+        return ConstantMessage.SUCCESS;
     }
 
     @Override
-    public Object findById(Long id){
+    public List<Sofor> soforList() {
+        List<Sofor> soforList =
+                soforRepository.findAll();
+        return soforList;
+    }
+
+    @Override
+    public Object findById(Long id) {
         return soforRepository.findById(id);
     }
 
     @Override
-    public Object findByTckn(Long tckn){
+    public Object findByTckn(Long tckn) {
         return soforRepository.findByTckn(tckn);
     }
 
     @Override
-    public String deleteById(Long id){
-      try {
-          soforRepository.deleteByRelationShip(id);
-          soforRepository.deleteById(id);
-          return ConstantMessage.SUCCESS;
-      }catch (Exception e){
-          return ConstantMessage.ERROR;
-      }
+    public String deleteById(Long id) {
+        try {
+            soforRepository.deleteByRelationShip(id);
+            soforRepository.deleteById(id);
+            return ConstantMessage.SUCCESS;
+        } catch (Exception e) {
+            return ConstantMessage.ERROR;
+        }
     }
 
     @Override
@@ -67,13 +77,13 @@ public class SoforService implements ISofor {
     }
 
     @Override
-    public String deleteByTckn(Long id){
+    public String deleteByTckn(Long id) {
         try {
-            Sofor sofor= soforRepository.findIdWithTckn(id);
+            Sofor sofor = soforRepository.findIdWithTckn(id);
             soforRepository.deleteByRelationShip(sofor.getSoforId());
             soforRepository.deleteByTckn(id);
             return ConstantMessage.SUCCESS;
-        }catch (Exception e){
+        } catch (Exception e) {
             return ConstantMessage.ERROR;
         }
     }

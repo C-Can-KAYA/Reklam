@@ -28,6 +28,12 @@ public class SoforController
         return new ResponseEntity<>(sofor.soforAdd(soforBilgi), HttpStatus.OK);
     }
 
+    @PostMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> update(@RequestBody SoforBilgi soforBilgi)
+    {
+        return new ResponseEntity<>(sofor.soforUpdate(soforBilgi), HttpStatus.OK);
+    }
+
     @GetMapping(path = "/findAll")
     public ResponseEntity<Object> findAll()
     {

@@ -8,24 +8,29 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 
-public interface SoforRepository extends JpaRepository<Sofor,Long> {
+public interface SoforRepository extends JpaRepository<Sofor, Long> {
 
-    @Query(value = "select * from reklamcilik.sofor p where p.tckn = :id",nativeQuery = true)
+    @Query(value = "select * from reklamcilik.sofor p where p.tckn = :id", nativeQuery = true)
     Object findByTckn(@Param("id") Long id);
 
     @Modifying
     @Transactional
-    @Query(value = "delete from reklamcilik.sofor p where p.tckn = :id",nativeQuery = true)
+    @Query(value = "delete from reklamcilik.sofor p where p.tckn = :id", nativeQuery = true)
     Integer deleteByTckn(@Param("id") Long id);
 
     @Modifying
     @Transactional
-    @Query(value = "delete from reklamcilik.minibus_sofor p where p.sofor_sofor_id=:id",nativeQuery = true)
+    @Query(value = "delete from reklamcilik.minibus_sofor p where p.sofor_sofor_id=:id", nativeQuery = true)
     Integer deleteByRelationShip(@Param("id") Long id);
 
-    @Query(value = "select * from reklamcilik.sofor p where p.tckn=:id",nativeQuery = true)
+    @Query(value = "select * from reklamcilik.sofor p where p.tckn=:id", nativeQuery = true)
     Sofor findIdWithTckn(@Param("id") Long id);
 
-    @Query(value = "select * from reklamcilik.sofor s where s.sofor_id=:sofor_id",nativeQuery = true)
+    @Query(value = "select * from reklamcilik.sofor s where s.sofor_id=:sofor_id", nativeQuery = true)
     Sofor findByIdForSofor(@Param("sofor_id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update reklamcilik.sofor s SET s.ad=:ad,s.soyad=:soyad,s.tckn=:tckn,s.tel=:tel where s.sofor_id=:sofor_id", nativeQuery = true)
+    Integer findByIdAndUpdate(@Param("ad") String ad, @Param("soyad") String soyad, @Param("tckn") Long tckn, @Param("tel") Long tel, @Param("sofor_id") Long soforId);
 }

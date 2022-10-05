@@ -8,11 +8,12 @@ import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
 import java.util.List;
 
 public interface IMinibus {
-    public String minibusAdd(MinibusBilgi minibusBilgi);
-    public String deleteById(Long id);
-    public List<ReklamResponse> findByNumberPlate(String number);
-    public List<Minibus> minibusList();
-    public Enum<Hat>[] ilList();
-    public List<String> hatList(String il);
-    public Object findById(Long id);
+    String minibusAdd(MinibusBilgi minibusBilgi);
+    String deleteById(Long id);
+    List<ReklamResponse> findByNumberPlate(String number);
+    List<Minibus> minibusList();
+    Enum<Hat>[] ilList();
+    List<String> hatList(String il);
+    Object findById(Long id);
+    Object minibusUpdate(MinibusBilgi minibusBilgi);
 }
