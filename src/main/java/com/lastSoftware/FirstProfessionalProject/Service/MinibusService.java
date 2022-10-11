@@ -90,8 +90,8 @@ public class MinibusService implements IMinibus {
         for (Reklam reklam : minibus.get(0).getReklam()) {
             ReklamResponse response = new ReklamResponse();
             response.setFirmaAd(reklam.getFirma().getFirmaAd());
-            response.setReklamId(reklam.getLink());
-            response.setReklamLink(reklam.getReklamId());
+            response.setReklamId(reklam.getReklamId());
+            response.setReklamLink(reklam.getLink());
             reklamResponse.add(response);
         }
         return reklamResponse;
