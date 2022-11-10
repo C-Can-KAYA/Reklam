@@ -6,6 +6,7 @@ import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.FirmaRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IFirma;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,22 +23,28 @@ public class FirmaService implements IFirma {
     FirmaRepository firmaRepository;
 
     @Override
-    public String firmaAdd(FirmaBilgi firmaBilgi) {
+    public MessageResponse firmaAdd(FirmaBilgi firmaBilgi) {
+        MessageResponse response=new MessageResponse();
         try {
             firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
+            response.setMessage(ConstantMessage.SUCCESS);
+            return response;
         } catch (Exception e) {
-            return ConstantMessage.ERROR;
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
         }
-        return ConstantMessage.SUCCESS;
     }
 
     @Override
-    public String deleteById(Long id) {
+    public MessageResponse deleteById(Long id) {
+        MessageResponse response=new MessageResponse();
         try {
             firmaRepository.deleteById(id);
-            return ConstantMessage.SUCCESS;
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
         }catch (Exception e){
-            return ConstantMessage.ERROR;
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
         }
     }
 
@@ -47,13 +54,17 @@ public class FirmaService implements IFirma {
     }
 
     @Override
-    public String updateFirma(FirmaBilgi firmaBilgi) {
+    public MessageResponse updateFirma(FirmaBilgi firmaBilgi) {
+        MessageResponse response=new MessageResponse();
         try {
             firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
+            response.setMessage(ConstantMessage.SUCCESS);
+            return response;
         } catch (Exception e) {
-            return ConstantMessage.ERROR;
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
         }
-        return ConstantMessage.SUCCESS;
+
     }
 
     @Override

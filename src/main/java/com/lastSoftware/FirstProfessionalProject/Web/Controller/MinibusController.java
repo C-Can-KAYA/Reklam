@@ -2,6 +2,7 @@ package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -25,17 +26,17 @@ public class MinibusController {
     IMinibus minibus;
 
     @PostMapping(path = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> insert(@RequestBody MinibusBilgi minibusBilgi) {
+    public ResponseEntity<MessageResponse> insert(@RequestBody MinibusBilgi minibusBilgi) {
         return new ResponseEntity<>(minibus.minibusAdd(minibusBilgi), HttpStatus.OK);
     }
 
     @PostMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> update(@RequestBody MinibusBilgi minibusBilgi) {
+    public ResponseEntity<MessageResponse> update(@RequestBody MinibusBilgi minibusBilgi) {
         return new ResponseEntity<>(minibus.minibusUpdate(minibusBilgi), HttpStatus.OK);
     }
 
     @PostMapping(path = "/deleteById/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id) {
         return new ResponseEntity<>(minibus.deleteById(id), HttpStatus.OK);
     }
 

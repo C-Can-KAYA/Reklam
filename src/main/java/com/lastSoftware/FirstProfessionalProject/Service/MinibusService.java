@@ -8,6 +8,7 @@ import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.MinibusRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,14 +26,16 @@ public class MinibusService implements IMinibus {
     MinibusRepository minibusRepository;
 
     @Override
-    public String minibusAdd(MinibusBilgi minibusBilgi) {
+    public MessageResponse minibusAdd(MinibusBilgi minibusBilgi) {
+        MessageResponse response=new MessageResponse();
         try {
             minibusRepository.save(iMapper.MinibusEntity(minibusBilgi));
+            response.setMessage(ConstantMessage.SUCCESS);
+            return response;
         } catch (Exception e) {
-            System.out.println(e);
-            return ConstantMessage.ERROR;
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
         }
-        return ConstantMessage.SUCCESS;
     }
 
     @Override
@@ -51,11 +54,18 @@ public class MinibusService implements IMinibus {
 
     @Override
     public Object findById(Long id) {
-        return minibusRepository.findById(id);
+        MessageResponse response=new MessageResponse();
+        try {
+            return minibusRepository.findById(id);
+        }catch (Exception e){
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
+        }
     }
 
     @Override
-    public Object minibusUpdate(MinibusBilgi minibusBilgi) {
+    public MessageResponse minibusUpdate(MinibusBilgi minibusBilgi) {
+        MessageResponse response=new MessageResponse();
         try {
             minibusRepository.deleteByMinibusIdForReklam(minibusBilgi.getId());
             minibusRepository.deleteByMinibusIdForSofor(minibusBilgi.getId());
@@ -65,21 +75,26 @@ public class MinibusService implements IMinibus {
             }
             minibusRepository.minibusUpdateForCarAndHat(
                     minibusBilgi.getId(), minibusBilgi.getHat(),minibusBilgi.getIl(), minibusBilgi.getMarka(), minibusBilgi.getModel(), minibusBilgi.getPlaka());
+            response.setMessage(ConstantMessage.SUCCESS);
+            return response;
         } catch (Exception e) {
-            return ConstantMessage.ERROR;
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
         }
-        return ConstantMessage.SUCCESS;
     }
 
     @Override
-    public String deleteById(Long id) {
+    public MessageResponse deleteById(Long id) {
+        MessageResponse response=new MessageResponse();
         try {
             minibusRepository.deleteByMinibusIdForSofor(id);
             minibusRepository.deleteByMinibusIdForReklam(id);
             minibusRepository.deleteByIdForMinibus(id);
-            return ConstantMessage.SUCCESS;
+            response.setMessage(ConstantMessage.SUCCESS);
+            return response;
         } catch (Exception e) {
-            return ConstantMessage.ERROR;
+            response.setMessage(ConstantMessage.ERROR);
+            return response;
         }
     }
 
