@@ -34,7 +34,7 @@ public class MinibusService implements IMinibus {
             return response;
         } catch (Exception e) {
             System.out.println(e);
-            response.setMessage(ConstantMessage.ERROR);
+            response.setMessage(e.toString());
             return response;
         }
     }
