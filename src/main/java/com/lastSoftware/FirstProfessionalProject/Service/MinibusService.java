@@ -94,7 +94,7 @@ public class MinibusService implements IMinibus {
             response.setMessage(ConstantMessage.SUCCESS);
             return response;
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
+            response.setMessage(e.toString());
             return response;
         }
     }
