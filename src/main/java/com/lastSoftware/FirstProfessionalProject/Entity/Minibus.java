@@ -40,7 +40,6 @@ public class Minibus {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @org.hibernate.annotations.ForeignKey(name = "none")
     private List<Sofor> sofor;
     @ManyToMany(
             cascade = CascadeType.ALL,
