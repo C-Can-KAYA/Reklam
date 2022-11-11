@@ -26,7 +26,6 @@ public interface SoforRepository extends JpaRepository<Sofor, Long> {
     @Query(value = "select * from reklamcilik.sofor p where p.tckn=:id", nativeQuery = true)
     Sofor findIdWithTckn(@Param("id") Long id);
 
-    @Modifying
     @Query(value = "select * from reklamcilik.sofor s where s.sofor_id=:sofor_id", nativeQuery = true)
     Sofor findByIdForSofor(@Param("sofor_id") Long id);
 
