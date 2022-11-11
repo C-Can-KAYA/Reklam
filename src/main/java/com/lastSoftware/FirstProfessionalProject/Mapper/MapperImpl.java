@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -33,11 +34,25 @@ public class MapperImpl implements IMapper {
         minibus.setHat(minibusBilgi.getHat());
         minibus.setIl(minibusBilgi.getIl());
         List<Sofor>soforList=new ArrayList<>();
-        soforList.add(soforRepository.findByIdForSofor(minibusBilgi.getSofor()));
+        try{
+            Sofor sofor=soforRepository.findByIdForSofor(minibusBilgi.getSofor());
+            if (Objects.nonNull(sofor)) {
+                soforList.add(sofor);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
         minibus.setSofor(soforList);
         List<Reklam> reklamList = new ArrayList<>();
         for (Long reklamId : minibusBilgi.getReklam()) {
-            reklamList.add(reklamRepository.findByIdForReklam(reklamId));
+            try {
+                Reklam reklam = reklamRepository.findByIdForReklam(reklamId);
+                if (Objects.nonNull(reklam)) {
+                    reklamList.add(reklam);
+                }
+            }catch (Exception e){
+                System.out.println(e);
+            }
         }
         minibus.setReklam(reklamList);
         minibus.setPlaka(minibusBilgi.getPlaka());
