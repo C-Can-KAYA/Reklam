@@ -40,7 +40,8 @@ public class MapperImpl implements IMapper {
                 soforList.add(sofor);
             }
         }catch (Exception e){
-            System.out.println(e);
+            minibus.setModel(e.toString());
+            return minibus;
         }
         minibus.setSofor(soforList);
         List<Reklam> reklamList = new ArrayList<>();
@@ -51,7 +52,8 @@ public class MapperImpl implements IMapper {
                     reklamList.add(reklam);
                 }
             }catch (Exception e){
-                System.out.println(e);
+                minibus.setModel(e.toString());
+                return minibus;
             }
         }
         minibus.setReklam(reklamList);
