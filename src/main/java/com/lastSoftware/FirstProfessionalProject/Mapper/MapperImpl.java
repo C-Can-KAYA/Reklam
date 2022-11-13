@@ -33,6 +33,7 @@ public class MapperImpl implements IMapper {
         minibus.setModel(minibusBilgi.getModel());
         minibus.setHat(minibusBilgi.getHat());
         minibus.setIl(minibusBilgi.getIl());
+        minibus.setPlaka(minibusBilgi.getPlaka());
         List<Sofor>soforList=new ArrayList<>();
         try{
             Sofor sofor=soforRepository.findByIdForSofor(minibusBilgi.getSofor());
@@ -57,7 +58,6 @@ public class MapperImpl implements IMapper {
             }
         }
         minibus.setReklam(reklamList);
-        minibus.setPlaka(minibusBilgi.getPlaka());
         return minibus;
     }
 
