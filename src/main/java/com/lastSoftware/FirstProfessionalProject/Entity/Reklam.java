@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="reklam",
+        name="Reklam",
         uniqueConstraints = @UniqueConstraint(
                 name = "link_unique",
                 columnNames = "link"
