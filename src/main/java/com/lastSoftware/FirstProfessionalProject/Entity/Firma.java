@@ -43,7 +43,7 @@ public class Firma {
     )
     private Adres adres;
 
-    @ManyToMany(
+    @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
