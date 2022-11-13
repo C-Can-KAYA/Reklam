@@ -101,7 +101,16 @@ public class MinibusService implements IMinibus {
 
     @Override
     public List<ReklamResponse> findByNumberPlate(String number) {
-        List<Minibus> minibus = minibusRepository.findByNumberPlate(number);
+        List<Minibus> minibus=null;
+        try {
+            minibus = minibusRepository.findByNumberPlate(number);
+        }catch (Exception e){
+            List<ReklamResponse> reklamResponses=new ArrayList<>();
+            ReklamResponse reklamResponse=new ReklamResponse();
+            reklamResponse.setReklamLink(e.toString());
+            reklamResponses.add(reklamResponse);
+            return reklamResponses;
+        }
         List<ReklamResponse> reklamResponse = new ArrayList<>();
         for (Reklam reklam : minibus.get(0).getReklam()) {
             ReklamResponse response = new ReklamResponse();
