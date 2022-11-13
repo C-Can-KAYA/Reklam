@@ -40,12 +40,12 @@ public class MapperImpl implements IMapper {
                 soforList.add(sofor);
             }
         minibus.setSofor(soforList);
-        List<Reklam> reklamList = new ArrayList<>();
-        for (Long reklamId : minibusBilgi.getReklam()) {
-                Reklam reklam = reklamRepository.findByIdForReklam(reklamId);
-                if (Objects.nonNull(reklam)) {
-                    reklamList.add(reklam);
-                }
+        List<Reklam> reklamList =new ArrayList<>();
+        for (Long reklamFor:minibusBilgi.getReklam()) {
+            Optional<Reklam> reklam = reklamRepository.findById(Long.valueOf(reklamFor));
+            if(Objects.nonNull(reklam)){
+                reklamList.add(reklam.get());
+            }
         }
         minibus.setReklam(reklamList);
         return minibus;
