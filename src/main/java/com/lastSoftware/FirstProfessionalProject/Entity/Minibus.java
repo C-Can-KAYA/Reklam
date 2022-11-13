@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="Minibus",
+        name="'Minibus'",
         uniqueConstraints = @UniqueConstraint(
                 name = "plaka_unique",
                 columnNames = "plaka"
@@ -47,7 +47,7 @@ public class Minibus {
     )
     private List<Reklam> reklam;
     @Column(
-            name = "plaka",
+            name = "'plaka'",
             nullable = false
     )
     private String plaka;

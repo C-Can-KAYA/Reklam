@@ -42,7 +42,7 @@ public class MapperImpl implements IMapper {
         minibus.setSofor(soforList);
         List<Reklam> reklamList =new ArrayList<>();
         for (Long reklamFor:minibusBilgi.getReklam()) {
-            Optional<Reklam> reklam = reklamRepository.findByIdReklam(Long.valueOf(reklamFor));
+            Optional<Reklam> reklam = reklamRepository.findById(Long.valueOf(reklamFor));
             if(Objects.nonNull(reklam)){
                 reklamList.add(reklam.get());
             }

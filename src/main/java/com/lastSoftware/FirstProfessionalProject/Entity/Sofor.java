@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="Sofor"
+        name="'Sofor'"
 )
 public class Sofor {
         @Id
@@ -30,7 +30,7 @@ public class Sofor {
         private String ad;
         private String soyad;
         @Column(
-                name = "tckn",
+                name = "'tckn'",
                 nullable = false
         )
         private Long tckn;

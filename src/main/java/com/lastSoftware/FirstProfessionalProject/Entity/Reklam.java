@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="Reklam",
+        name="'Reklam'",
         uniqueConstraints = @UniqueConstraint(
                 name = "link_unique",
                 columnNames = "link"
@@ -35,6 +35,6 @@ public class Reklam {
     private String ad;
     private String reklamId;
     @ManyToOne
-    @JoinColumn(name = "firma_id")
+    @JoinColumn(name = "'firma_id'")
     private Firma firma;
 }
