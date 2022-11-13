@@ -36,12 +36,12 @@ public class Minibus {
     private String model;
     private String hat;
     private String il;
-    @ManyToMany(
+    @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     private List<Sofor> sofor;
-    @ManyToMany(
+    @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
