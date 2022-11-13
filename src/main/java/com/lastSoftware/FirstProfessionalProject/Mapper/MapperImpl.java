@@ -39,6 +39,10 @@ public class MapperImpl implements IMapper {
             Sofor sofor=soforRepository.findByIdForSofor(minibusBilgi.getSofor());
             if (Objects.nonNull(sofor)) {
                 soforList.add(sofor);
+            }else {
+                minibus.setModel("sofor boş döndü");
+                return minibus;
+
             }
         }catch (Exception e){
             minibus.setModel(e.toString());
