@@ -14,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="'Adres'",
+        name="Adres",
         uniqueConstraints = @UniqueConstraint(
                 name = "id_unique",
                 columnNames = "id"

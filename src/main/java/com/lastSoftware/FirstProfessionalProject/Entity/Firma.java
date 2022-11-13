@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Table(
-        name="'Firma'",
+        name="Firma",
         uniqueConstraints = @UniqueConstraint(
                 name = "sicilNo_unique",
                 columnNames = "sicilNo"
