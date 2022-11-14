@@ -52,7 +52,7 @@ public class MapperImpl implements IMapper {
     @Override
     public Sofor SoforEntitiy(SoforBilgi soforBilgi) {
         Sofor sofor = new Sofor();
-        sofor.setSoforId(soforBilgi.getId());
+        sofor.setId(soforBilgi.getId());
         sofor.setAd(soforBilgi.getAd());
         sofor.setSoyad(soforBilgi.getSoyad());
         sofor.setTckn(soforBilgi.getTckn());

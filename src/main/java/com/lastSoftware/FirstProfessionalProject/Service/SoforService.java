@@ -80,7 +80,7 @@ public class SoforService implements ISofor {
     public String deleteByTckn(Long id) {
         try {
             Sofor sofor = soforRepository.findIdWithTckn(id);
-            soforRepository.deleteByRelationShip(sofor.getSoforId());
+            soforRepository.deleteByRelationShip(sofor.getId());
             soforRepository.deleteByTckn(id);
             return ConstantMessage.SUCCESS;
         } catch (Exception e) {
