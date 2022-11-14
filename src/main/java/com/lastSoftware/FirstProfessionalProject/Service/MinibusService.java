@@ -34,8 +34,7 @@ public class MinibusService implements IMinibus {
             response.setMessage(ConstantMessage.SUCCESS);
             return response;
         } catch (Exception e) {
-            System.out.println(e);
-            response.setMessage(iMapper.MinibusEntity(minibusBilgi).toString());
+            response.setMessage(ConstantMessage.ERROR);
             return response;
         }
     }

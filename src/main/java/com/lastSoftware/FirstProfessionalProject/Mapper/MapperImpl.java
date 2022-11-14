@@ -35,15 +35,9 @@ public class MapperImpl implements IMapper {
         minibus.setIl(minibusBilgi.getIl());
         minibus.setPlaka(minibusBilgi.getPlaka());
         List<Sofor> soforList=new ArrayList<>();
-        Optional<Sofor> sofor=soforRepository.findById(minibusBilgi.getSofor());
+        Sofor sofor=soforRepository.findByIdForSofor(minibusBilgi.getSofor());
             if (Objects.nonNull(sofor)) {
-                Sofor sofor1=new Sofor();
-                sofor1.setId(sofor.get().getId());
-                sofor1.setAd(sofor.get().getAd());
-                sofor1.setSoyad(sofor.get().getSoyad());
-                sofor1.setTckn(sofor.get().getTckn());
-                sofor1.setTel(sofor.get().getTel());
-                soforList.add(sofor1);
+                soforList.add(sofor);
             }
         minibus.setSofor(soforList);
         List<Reklam> reklamList =new ArrayList<>();
