@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MinibusService implements IMinibus {
@@ -112,12 +113,14 @@ public class MinibusService implements IMinibus {
             return reklamResponses;
         }
         List<ReklamResponse> reklamResponse = new ArrayList<>();
-        for (Reklam reklam : minibus.get(0).getReklam()) {
-            ReklamResponse response = new ReklamResponse();
-            response.setFirmaAd(reklam.getFirma().getFirmaAd());
-            response.setReklamId(reklam.getReklamId());
-            response.setReklamLink(reklam.getLink());
-            reklamResponse.add(response);
+        if(Objects.nonNull(minibus)) {
+            for (Reklam reklam : minibus.get(0).getReklam()) {
+                ReklamResponse response = new ReklamResponse();
+                response.setFirmaAd(reklam.getFirma().getFirmaAd());
+                response.setReklamId(reklam.getReklamId());
+                response.setReklamLink(reklam.getLink());
+                reklamResponse.add(response);
+            }
         }
         return reklamResponse;
     }
