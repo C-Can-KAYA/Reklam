@@ -42,10 +42,8 @@ public class MapperImpl implements IMapper {
         minibus.setSofor(soforList);
         List<Reklam> reklamList =new ArrayList<>();
         for (Long reklamFor:minibusBilgi.getReklam()) {
-            Optional<Reklam> reklam = reklamRepository.findById(Long.valueOf(reklamFor));
-            if(Objects.nonNull(reklam)){
-                reklamList.add(reklam.get());
-            }
+            Reklam reklam = reklamRepository.findByIdForReklam(Long.valueOf(reklamFor));
+            reklamList.add(reklam);
         }
         minibus.setReklam(reklamList);
         return minibus;
