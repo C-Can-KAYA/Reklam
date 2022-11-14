@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface MinibusRepository extends JpaRepository<Minibus, Long> {
+    @Modifying
+    @Transactional
     @Query(value = "SELECT * FROM reklamcilik.minibus m where m.plaka=:plaka", nativeQuery = true)
     List<Minibus> findByNumberPlate(@Param("plaka") String plaka);
 
