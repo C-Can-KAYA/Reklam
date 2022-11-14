@@ -34,7 +34,7 @@ public interface MinibusRepository extends JpaRepository<Minibus, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO reklamcilik.minibus_sofor (minibus_id, sofor_sofor_id)VALUES (:minibusId,:soforId)", nativeQuery = true)
+    @Query(value = "INSERT INTO reklamcilik.minibus_sofor (minibus_id, sofor_id)VALUES (:minibusId,:soforId)", nativeQuery = true)
     Integer minibusInsertForSofor(@Param("minibusId") Long minibusId, @Param("soforId") Long soforId);
 
     @Modifying

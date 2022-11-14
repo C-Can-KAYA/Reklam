@@ -26,7 +26,7 @@ public class Sofor {
                 strategy = GenerationType.SEQUENCE,
                 generator = "sofor_sequence"
         )
-        private Long soforId;
+        private Long id;
         private String ad;
         private String soyad;
         @Column(
