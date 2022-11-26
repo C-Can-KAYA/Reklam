@@ -20,11 +20,6 @@ public interface SoforRepository extends JpaRepository<Sofor, Long> {
     @Query(value = "delete from sofor p where p.tckn = :id", nativeQuery = true)
     Integer deleteByTckn(@Param("id") Long id);
 
-    @Modifying
-    @Transactional
-    @Query(value = "delete from minibus_sofor p where p.id=:id", nativeQuery = true)
-    Integer deleteByRelationShip(@Param("id") Long id);
-
     @Query(value = "select * from sofor p where p.tckn=:id", nativeQuery = true)
     Sofor findIdWithTckn(@Param("id") Long id);
 
