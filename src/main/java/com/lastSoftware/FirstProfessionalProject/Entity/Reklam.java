@@ -35,6 +35,6 @@ public class Reklam {
     private String ad;
     private String reklamId;
     @ManyToOne
-    @JoinColumn(name = "firma_id")
+    @JoinColumn(name="Firma",referencedColumnName="id")
     private Firma firma;
 }
