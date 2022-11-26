@@ -58,7 +58,7 @@ public class SoforService implements ISofor {
     @Override
     public String deleteById(Long id) {
         try {
-            soforRepository.deleteByRelationShip(id);
+           // soforRepository.deleteByRelationShip(id);
             soforRepository.deleteById(id);
             return ConstantMessage.SUCCESS;
         } catch (Exception e) {
@@ -79,8 +79,8 @@ public class SoforService implements ISofor {
     @Override
     public String deleteByTckn(Long id) {
         try {
-            Sofor sofor = soforRepository.findIdWithTckn(id);
-            soforRepository.deleteByRelationShip(sofor.getId());
+            soforRepository.findIdWithTckn(id);
+//            soforRepository.deleteByRelationShip(id);
             soforRepository.deleteByTckn(id);
             return ConstantMessage.SUCCESS;
         } catch (Exception e) {
