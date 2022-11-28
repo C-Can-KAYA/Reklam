@@ -29,16 +29,6 @@ public class SoforService implements ISofor {
     }
 
     @Override
-    public String soforUpdate(SoforBilgi sofor) {
-        try {
-            soforRepository.findByIdAndUpdate(sofor.getAd(), sofor.getSoyad(), sofor.getTckn(), sofor.getTel(), sofor.getId());
-        } catch (Exception e) {
-            return ConstantMessage.ERROR;
-        }
-        return ConstantMessage.SUCCESS;
-    }
-
-    @Override
     public List<Sofor> soforList() {
         List<Sofor> soforList =
                 soforRepository.findAll();

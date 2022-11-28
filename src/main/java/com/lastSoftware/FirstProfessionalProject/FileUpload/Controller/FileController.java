@@ -1,23 +1,10 @@
 package com.lastSoftware.FirstProfessionalProject.FileUpload.Controller;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-
-import com.lastSoftware.FirstProfessionalProject.Entity.FileDB;
-import com.lastSoftware.FirstProfessionalProject.Web.Response.ResponseFile;
-import com.lastSoftware.FirstProfessionalProject.Web.Response.ResponseMessage;
-import com.lastSoftware.FirstProfessionalProject.Service.FileStorageService;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
@@ -25,7 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping(path = "file")
 @Api(value = "upload endpointler", tags = "File")
 public class FileController {
-    @Autowired
+/*    @Autowired
     private FileStorageService storageService;
 
     @PostMapping("/insert")
@@ -71,5 +58,5 @@ public class FileController {
         String message = "";
         message = storageService.deleteFileById(id);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
-    }
+    }*/
 }
