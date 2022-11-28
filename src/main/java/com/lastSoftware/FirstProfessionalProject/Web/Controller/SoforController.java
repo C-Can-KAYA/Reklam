@@ -5,7 +5,6 @@ import com.lastSoftware.FirstProfessionalProject.Service.Interface.ISofor;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@Log4j2
 @RequestMapping(path = "sofor")
 @Api(value = "sofor endpointler", tags = "Sofor")
 public class SoforController

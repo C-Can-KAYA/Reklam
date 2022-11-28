@@ -5,7 +5,6 @@ import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,14 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@Log4j2
 @RequestMapping(path = "firma")
 @Api(value = "firma endpointler", tags = "Firma")
 public class FirmaController {
-
     @Autowired
     IFirma firma;
-
     @PostMapping(path = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<MessageResponse> insert(@RequestBody FirmaBilgi firmaBilgi)
     {

@@ -15,13 +15,10 @@ import java.util.Optional;
 
 @Service
 public class FirmaService implements IFirma {
-
     @Autowired
     IMapper iMapper;
-
     @Autowired
     FirmaRepository firmaRepository;
-
     @Override
     public MessageResponse firmaAdd(FirmaBilgi firmaBilgi) {
         MessageResponse response=new MessageResponse();

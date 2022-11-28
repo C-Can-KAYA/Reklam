@@ -6,11 +6,9 @@ import com.lastSoftware.FirstProfessionalProject.Service.Interface.IReklam;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.ResponseMessage;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +17,6 @@ import java.util.NoSuchElementException;
 
 @RestController
 @AllArgsConstructor
-@Log4j2
 @RequestMapping(path = "reklam")
 @Api(value = "reklam endpointler", tags = "Reklam")
 public class ReklamController {
