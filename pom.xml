@@ -9,6 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lastSoftware</groupId>
+	<packaging>jar</packaging>
 	<artifactId>FirstProfessionalProject</artifactId>
 	<version>3.0.0-SNAPSHOT</version>
 	<name>Reklamcilik</name>
