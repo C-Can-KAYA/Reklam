@@ -2,8 +2,9 @@ package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Request.ReklamGuncelle;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
-import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponseNumberPlate;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class MinibusController {
         return new ResponseEntity<>(minibus.minibusUpdate(minibusBilgi), HttpStatus.OK);
     }
 
+    @PostMapping(path = "/guncel", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<MessageResponse> updateGuncel(@RequestBody ReklamGuncelle reklamGuncelle) {
+        return new ResponseEntity<>(minibus.minibusReklamGuncelle(reklamGuncelle), HttpStatus.OK);
+    }
+
     @PostMapping(path = "/deleteById/{id}")
     public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id) {
         return new ResponseEntity<>(minibus.deleteById(id), HttpStatus.OK);
@@ -47,8 +53,8 @@ public class MinibusController {
     }
 
     @GetMapping(path = "/findByNumberPlate/{number}")
-    public ResponseEntity<List<ReklamResponse>> findByNumberPlate(@PathVariable String number) {
-        return new ResponseEntity<List<ReklamResponse>>(minibus.findByNumberPlate(number), HttpStatus.OK);
+    public ResponseEntity<List<ReklamResponseNumberPlate>> findByNumberPlate(@PathVariable String number) {
+        return new ResponseEntity<List<ReklamResponseNumberPlate>>(minibus.findByNumberPlate(number), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findById/{number}")

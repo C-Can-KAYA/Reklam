@@ -51,4 +51,5 @@ public class Minibus {
             nullable = false
     )
     private String plaka;
+    private Boolean guncel = true;
 }

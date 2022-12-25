@@ -8,8 +8,9 @@ import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.MinibusRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Request.ReklamGuncelle;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
-import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponse;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponseNumberPlate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,13 +76,25 @@ public class MinibusService implements IMinibus {
                 minibusRepository.minibusInsertForReklam(minibusBilgi.getId(), reklam);
             }
             minibusRepository.minibusUpdateForCarAndHat(
-                    minibusBilgi.getId(), minibusBilgi.getHat(),minibusBilgi.getIl(), minibusBilgi.getMarka(), minibusBilgi.getModel(), minibusBilgi.getPlaka());
+                    minibusBilgi.getId(), minibusBilgi.getHat(),minibusBilgi.getIl(), minibusBilgi.getMarka(), minibusBilgi.getModel(), minibusBilgi.getPlaka(),true);
             response.setMessage(ConstantMessage.SUCCESS);
             return response;
         } catch (Exception e) {
             response.setMessage(ConstantMessage.ERROR);
             return response;
         }
+    }
+
+    @Override
+    public MessageResponse minibusReklamGuncelle(ReklamGuncelle reklamGuncelle) {
+        MessageResponse response=new MessageResponse();
+        try {
+            minibusRepository.minibusReklamGuncelle(reklamGuncelle.getPlaka(), reklamGuncelle.getChecked());
+            response.setMessage(ConstantMessage.SUCCESS);
+        }catch (Exception e){
+            response.setMessage(e.toString());
+        }
+        return response;
     }
 
     @Override
@@ -100,24 +113,16 @@ public class MinibusService implements IMinibus {
     }
 
     @Override
-    public List<ReklamResponse> findByNumberPlate(String number) {
-        List<Minibus> minibus=null;
-        try {
-            minibus = minibusRepository.findByNumberPlate(number);
-        }catch (Exception e){
-            List<ReklamResponse> reklamResponses=new ArrayList<>();
-            ReklamResponse reklamResponse=new ReklamResponse();
-            reklamResponse.setReklamLink(e.toString());
-            reklamResponses.add(reklamResponse);
-            return reklamResponses;
-        }
-        List<ReklamResponse> reklamResponse = new ArrayList<>();
+    public List<ReklamResponseNumberPlate> findByNumberPlate(String number) {
+        List<Minibus> minibus = minibusRepository.findByNumberPlate(number);
+        List<ReklamResponseNumberPlate> reklamResponse = new ArrayList<>();
         if(Objects.nonNull(minibus)) {
             for (Reklam reklam : minibus.get(0).getReklam()) {
-                ReklamResponse response = new ReklamResponse();
+                ReklamResponseNumberPlate response = new ReklamResponseNumberPlate();
                 response.setFirmaAd(reklam.getFirma().getFirmaAd());
                 response.setReklamId(reklam.getReklamId());
                 response.setReklamLink(reklam.getLink());
+                response.setChecked(minibus.get(0).getGuncel());
                 reklamResponse.add(response);
             }
         }

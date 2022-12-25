@@ -39,9 +39,15 @@ public interface MinibusRepository extends JpaRepository<Minibus, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "update minibus set hat=:hat,il=:il,marka=:marka,model=:model,plaka=:plaka where id=:minibusId", nativeQuery = true)
+    @Query(value = "update minibus set hat=:hat,il=:il,marka=:marka,model=:model,plaka=:plaka,guncel=:guncel where id=:minibusId", nativeQuery = true)
     Integer minibusUpdateForCarAndHat(
-            @Param("minibusId") Long minibusId, @Param("hat") String hat,@Param("il") String il, @Param("marka") String marka, @Param("model") String model, @Param("plaka") String plaka);
+            @Param("minibusId") Long minibusId, @Param("hat") String hat,@Param("il") String il, @Param("marka") String marka, @Param("model") String model, @Param("plaka") String plaka,@Param("guncel") Boolean guncel);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update minibus set guncel=:guncel where plaka=:plaka", nativeQuery = true)
+    Integer minibusReklamGuncelle(
+            @Param("plaka") String plaka, @Param("guncel") Boolean guncelle);
 
     @Modifying
     @Transactional
