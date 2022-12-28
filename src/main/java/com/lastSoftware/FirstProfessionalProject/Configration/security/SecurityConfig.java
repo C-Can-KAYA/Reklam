@@ -78,6 +78,8 @@ public class SecurityConfig {
                 .permitAll()
                 .antMatchers("minibus/guncel")
                 .permitAll()
+                .antMatchers("swagger-ui.html")
+                .permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
