@@ -49,9 +49,16 @@ public class SecurityConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
+        config.setAllowCredentials(true);
         config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("OPTIONS");
+        config.addAllowedMethod("HEAD");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
+        config.addAllowedMethod("PATCH");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
@@ -69,17 +76,7 @@ public class SecurityConfig {
                 .permitAll()
                 .antMatchers("/auth/**")
                 .permitAll()
-                .antMatchers("/swagger-ui.html/**")
-                .permitAll()
-                .antMatchers("/swagger-ui.html#/**")
-                .permitAll()
-                .antMatchers("/webjars/**")
-                .permitAll()
-                .antMatchers("/swagger-resources/**")
-                .permitAll()
-                .antMatchers("/v2/**")
-                .permitAll()
-                .antMatchers("/**")
+                .antMatchers("minibus/guncel")
                 .permitAll()
                 .anyRequest().authenticated();
 
