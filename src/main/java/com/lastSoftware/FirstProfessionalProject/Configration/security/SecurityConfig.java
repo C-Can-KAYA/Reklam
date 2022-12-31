@@ -72,13 +72,13 @@ public class SecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(handler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "minibus/findByNumberPlate/{number}/**")
+                .antMatchers(HttpMethod.GET, "/minibus/findByNumberPlate/{number}/**")
                 .permitAll()
                 .antMatchers("/auth/**")
                 .permitAll()
-                .antMatchers("minibus/guncel")
+                .antMatchers("/minibus/guncel")
                 .permitAll()
-                .antMatchers("/swagger-ui.html")
+                .antMatchers("/v2/**","/swagger-resources/**","/webjars/**","/swagger-ui.html","/csrf")
                 .permitAll()
                 .anyRequest().authenticated();
 
