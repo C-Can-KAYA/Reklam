@@ -51,7 +51,7 @@ public class AuthController {
         String jwtToken = jwtTokenProvider.generateJwtToken(auth);
         User user = userService.getOneUserByUserName(loginRequest.getUserName());
         AuthResponse authResponse = new AuthResponse();
-        authResponse.setAccessToken("Bearer " + jwtToken);
+        authResponse.setAccessToken(jwtToken);
         authResponse.setRefreshToken(refreshTokenService.createRefreshToken(user));
         authResponse.setUserId(user.getId());
         return authResponse;
@@ -78,7 +78,7 @@ public class AuthController {
         String jwtToken = jwtTokenProvider.generateJwtToken(auth);
 
         authResponse.setMessage("User successfully registered.");
-        authResponse.setAccessToken("Bearer " + jwtToken);
+        authResponse.setAccessToken(jwtToken);
         authResponse.setRefreshToken(refreshTokenService.createRefreshToken(user));
         authResponse.setUserId(user.getId());
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
