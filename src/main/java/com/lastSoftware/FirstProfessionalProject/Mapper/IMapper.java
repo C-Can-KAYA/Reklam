@@ -1,9 +1,7 @@
 package com.lastSoftware.FirstProfessionalProject.Mapper;
 
 import com.lastSoftware.FirstProfessionalProject.Entity.*;
-import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
-import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
-import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Request.*;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface IMapper {
@@ -11,4 +9,6 @@ public interface IMapper {
     Sofor SoforEntitiy(SoforBilgi soforBilgi);
     Firma firmaEntitiy(FirmaBilgi firmaBilgi);
     Reklam ReklamEntity(MultipartFile reklamBilgi, FileDB fileDB,Long firma);
+    Iller IllerEntity(IlRequest ilRequest);
+    Hat HatEntity(HatRequest hatRequest);
 }

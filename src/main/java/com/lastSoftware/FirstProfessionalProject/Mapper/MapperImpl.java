@@ -4,9 +4,7 @@ import com.lastSoftware.FirstProfessionalProject.Entity.*;
 import com.lastSoftware.FirstProfessionalProject.Repository.ReklamRepository;
 import com.lastSoftware.FirstProfessionalProject.Repository.SoforRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IFirma;
-import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
-import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
-import com.lastSoftware.FirstProfessionalProject.Web.Request.SoforBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Request.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,14 +32,14 @@ public class MapperImpl implements IMapper {
         minibus.setHat(minibusBilgi.getHat());
         minibus.setIl(minibusBilgi.getIl());
         minibus.setPlaka(minibusBilgi.getPlaka());
-        List<Sofor> soforList=new ArrayList<>();
-        Sofor sofor=soforRepository.findByIdForSofor(minibusBilgi.getSofor());
-            if (Objects.nonNull(sofor)) {
-                soforList.add(sofor);
-            }
+        List<Sofor> soforList = new ArrayList<>();
+        Sofor sofor = soforRepository.findByIdForSofor(minibusBilgi.getSofor());
+        if (Objects.nonNull(sofor)) {
+            soforList.add(sofor);
+        }
         minibus.setSofor(soforList);
-        List<Reklam> reklamList =new ArrayList<>();
-        for (Long reklamFor:minibusBilgi.getReklam()) {
+        List<Reklam> reklamList = new ArrayList<>();
+        for (Long reklamFor : minibusBilgi.getReklam()) {
             Reklam reklam = reklamRepository.findByIdForReklam(Long.valueOf(reklamFor));
             reklamList.add(reklam);
         }
@@ -93,5 +91,23 @@ public class MapperImpl implements IMapper {
         firma.setAdres(adres);
         reklam.setFirma(firma);
         return reklam;
+    }
+
+    @Override
+    public Iller IllerEntity(IlRequest ilRequest) {
+        Iller iller = new Iller();
+        iller.setId(ilRequest.getId());
+        iller.setIlAdi(ilRequest.getIlAdi());
+        iller.setPlakaKod(ilRequest.getPlakaKod());
+        return iller;
+    }
+
+    @Override
+    public Hat HatEntity(HatRequest hatRequest) {
+        Hat hat = new Hat();
+        hat.setHatAdi(hatRequest.getHatAdi());
+        hat.setId(hatRequest.getId());
+        hat.setPlakaKod(hatRequest.getPlakaKod());
+        return hat;
     }
 }

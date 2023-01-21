@@ -44,5 +44,4 @@ public class FirmaController {
     public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id){
         return new ResponseEntity<>(firma.deleteById(id), HttpStatus.OK);
     }
-
 }
