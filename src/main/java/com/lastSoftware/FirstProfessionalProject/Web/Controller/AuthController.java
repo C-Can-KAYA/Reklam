@@ -6,6 +6,7 @@ import com.lastSoftware.FirstProfessionalProject.Entity.User;
 import com.lastSoftware.FirstProfessionalProject.Service.User.RefreshTokenService;
 import com.lastSoftware.FirstProfessionalProject.Service.User.UserService;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.RefreshRequest;
+import com.lastSoftware.FirstProfessionalProject.Web.Request.RegisterRequest;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.UserRequest;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.AuthResponse;
 import org.springframework.http.HttpStatus;
@@ -58,11 +59,11 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register() {
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest registerRequests) {
         AuthResponse authResponse = new AuthResponse();
         UserRequest registerRequest=new UserRequest();
-        registerRequest.setUserName("CihatCanKAYA");
-        registerRequest.setPassword("CihatCanKAYA");
+        registerRequest.setUserName(registerRequests.getUserName());
+        registerRequest.setPassword(registerRequests.getPassword());
         if(userService.getOneUserByUserName(registerRequest.getUserName()) != null) {
             authResponse.setMessage("Username already in use.");
             return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
