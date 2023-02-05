@@ -3,16 +3,14 @@ package com.lastSoftware.FirstProfessionalProject.Web.Response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import com.lastSoftware.FirstProfessionalProject.Entity.Adres;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FirmaBilgileri {
-    public Long Id;
-    public String ad;
-    public String il;
-    public String ilce;
-    public Integer postaKodu;
-    public String sicilNo;
+public class FirmaResponse {
+    private Long id;
+    private String ad;
+    private String sicilNo;
+    private Adres Adres;
 }

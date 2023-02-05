@@ -5,7 +5,9 @@ import com.lastSoftware.FirstProfessionalProject.Entity.Hat;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.HatRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IHat;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.ProjectMapper;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.HatRequest;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.HatResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,63 +22,56 @@ public class HatService implements IHat {
     @Autowired
     IMapper iMapper;
 
+        @Autowired
+    private ProjectMapper mapper;
+
     @Override
-    public MessageResponse hatAdd(HatRequest hatRequest) {
-        MessageResponse response = new MessageResponse();
+    public HatResponse hatAdd(HatRequest hatRequest) throws Exception {
         try {
-            response.setMessage(ConstantMessage.SUCCESS);
             hatRepository.save(iMapper.HatEntity(hatRequest));
-            return response;
+            return mapper.hatRequestToHatResponse(hatRequest);
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public MessageResponse deleteById(Long id) {
+    public MessageResponse deleteById(Long id) throws Exception {
         MessageResponse response = new MessageResponse();
         try {
             hatRepository.deleteById(id);
             response.setMessage(ConstantMessage.SUCCESS);
-        } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
             return response;
-        }
-        return null;
-    }
-
-    @Override
-    public Optional<Hat> findById(Long id) {
-        try {
-            Optional<Hat> hat = hatRepository.findById(id);
-            return hat;
         } catch (Exception e) {
-            return null;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public List<Hat> findByPlateNumber(Integer number) {
-        List<Hat> hat = null;
+    public Optional<Hat> findById(Long id) throws Exception {
         try {
-            hat = hatRepository.findByNumberPlate(number);
-            return hat;
+            return hatRepository.findById(id);
+        } catch (Exception e) {
+            throw new Exception(ConstantMessage.ERROR);
+        }
+    }
+
+    @Override
+    public List<Hat> findByPlateNumber(Integer number) throws Exception {
+        try {
+            return hatRepository.findByNumberPlate(number);
         }catch (Exception e){
-            return hat;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public MessageResponse updateHat(HatRequest hatRequest) {
-        MessageResponse response = new MessageResponse();
+    public HatResponse updateHat(HatRequest hatRequest) throws Exception {
         try {
-            response.setMessage(ConstantMessage.SUCCESS);
             hatRepository.save(iMapper.HatEntity(hatRequest));
-            return response;
+            return mapper.hatRequestToHatResponse(hatRequest);
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 

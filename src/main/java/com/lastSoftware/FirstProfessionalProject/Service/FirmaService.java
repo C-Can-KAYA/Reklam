@@ -5,7 +5,9 @@ import com.lastSoftware.FirstProfessionalProject.Entity.Firma;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.FirmaRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IFirma;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.ProjectMapper;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.FirmaResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,29 +21,27 @@ public class FirmaService implements IFirma {
     IMapper iMapper;
     @Autowired
     FirmaRepository firmaRepository;
+    @Autowired
+    private ProjectMapper mapper;
     @Override
-    public MessageResponse firmaAdd(FirmaBilgi firmaBilgi) {
-        MessageResponse response=new MessageResponse();
+    public FirmaResponse firmaAdd(FirmaBilgi firmaBilgi) throws Exception {
         try {
             firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
-            response.setMessage(ConstantMessage.SUCCESS);
-            return response;
+            return mapper.firmaBilgiToFirmaResponse(firmaBilgi);
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public MessageResponse deleteById(Long id) {
+    public MessageResponse deleteById(Long id) throws Exception {
         MessageResponse response=new MessageResponse();
         try {
             firmaRepository.deleteById(id);
-            response.setMessage(ConstantMessage.ERROR);
+            response.setMessage(ConstantMessage.SUCCESS);
             return response;
         }catch (Exception e){
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
@@ -51,17 +51,13 @@ public class FirmaService implements IFirma {
     }
 
     @Override
-    public MessageResponse updateFirma(FirmaBilgi firmaBilgi) {
-        MessageResponse response=new MessageResponse();
+    public FirmaResponse updateFirma(FirmaBilgi firmaBilgi) throws Exception {
         try {
             firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
-            response.setMessage(ConstantMessage.SUCCESS);
-            return response;
+            return mapper.firmaBilgiToFirmaResponse(firmaBilgi);
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
-
     }
 
     @Override

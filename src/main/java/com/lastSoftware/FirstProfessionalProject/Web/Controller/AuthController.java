@@ -65,7 +65,7 @@ public class AuthController {
         registerRequest.setUserName(registerRequests.getUserName());
         registerRequest.setPassword(registerRequests.getPassword());
         if(userService.getOneUserByUserName(registerRequest.getUserName()) != null) {
-            authResponse.setMessage("Username already in use.");
+            authResponse.setMessage("Kullanıcı Kullanılmaktadır.");
             return new ResponseEntity<>(authResponse, HttpStatus.BAD_REQUEST);
         }
         User user = new User();

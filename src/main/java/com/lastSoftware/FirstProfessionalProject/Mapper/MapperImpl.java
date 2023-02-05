@@ -80,7 +80,7 @@ public class MapperImpl implements IMapper {
         reklam.setLink(reklamLink);
         reklam.setReklamId(fileDB.getId());
         Optional<Firma> firmaEkleme = firma.findById(id);
-        Firma firma = new Firma();
+        Firma firma = null;
         firma.setId(firmaEkleme.get().getId());
         firma.setFirmaAd(firmaEkleme.get().getFirmaAd());
         firma.setSicilNo(firmaEkleme.get().getSicilNo());

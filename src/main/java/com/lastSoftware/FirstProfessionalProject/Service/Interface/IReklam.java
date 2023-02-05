@@ -6,8 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 public interface IReklam {
-    String add(MultipartFile reklamBilgi, Long firma);
-    String deleteById(String id);
+    Reklam add(MultipartFile reklamBilgi, Long firma) throws Exception;
+    String deleteById(String id) throws Exception;
     List<Reklam> list();
     Object findById(Long id);
 }

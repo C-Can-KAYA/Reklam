@@ -2,6 +2,7 @@ package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IFirma;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.FirmaResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,7 @@ public class FirmaController {
     @Autowired
     IFirma firma;
     @PostMapping(path = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MessageResponse> insert(@RequestBody FirmaBilgi firmaBilgi)
-    {
+    public ResponseEntity<FirmaResponse> insert(@RequestBody FirmaBilgi firmaBilgi) throws Exception {
         return new ResponseEntity<>(firma.firmaAdd(firmaBilgi), HttpStatus.OK);
     }
 
@@ -36,12 +36,12 @@ public class FirmaController {
     }
 
     @PostMapping(path="/updateFirma")
-    public ResponseEntity<MessageResponse> updateFirma(@RequestBody FirmaBilgi firmaBilgi){
+    public ResponseEntity<FirmaResponse> updateFirma(@RequestBody FirmaBilgi firmaBilgi) throws Exception {
         return new ResponseEntity<>(firma.updateFirma(firmaBilgi), HttpStatus.OK);
     }
 
     @PostMapping(path="/deleteById/{id}")
-    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id){
+    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id) throws Exception {
         return new ResponseEntity<>(firma.deleteById(id), HttpStatus.OK);
     }
 }

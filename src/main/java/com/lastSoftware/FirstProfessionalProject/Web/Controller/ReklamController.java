@@ -28,12 +28,12 @@ public class ReklamController {
     private FileStorageService storageService;
 
     @PostMapping(path = "/insert/{firma}")
-    public ResponseEntity<Object> insert(@RequestParam("multipartFile") MultipartFile multipartFile,@PathVariable("firma") Long firma) {
+    public ResponseEntity<Object> insert(@RequestParam("multipartFile") MultipartFile multipartFile,@PathVariable("firma") Long firma) throws Exception {
         return new ResponseEntity<>(reklam.add(multipartFile,firma), HttpStatus.OK);
     }
 
     @PostMapping(path="/deleteById/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable String id){
+    public ResponseEntity<Object> deleteById(@PathVariable String id) throws Exception {
         return new ResponseEntity<>(reklam.deleteById(id), HttpStatus.OK);
     }
 

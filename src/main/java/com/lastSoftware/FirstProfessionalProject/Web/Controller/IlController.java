@@ -2,6 +2,7 @@ package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IIller;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.IlRequest;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.IlResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
@@ -20,12 +21,12 @@ public class IlController {
     IIller il;
 
     @PostMapping(path = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MessageResponse> insert(@RequestBody IlRequest ilRequest) {
+    public ResponseEntity<IlResponse> insert(@RequestBody IlRequest ilRequest) throws Exception {
         return new ResponseEntity<>(il.addIl(ilRequest), HttpStatus.OK);
     }
 
     @PostMapping(path = "/deleteById/{id}")
-    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id) throws Exception {
         return new ResponseEntity<>(il.deleteById(id), HttpStatus.OK);
     }
 
@@ -35,7 +36,7 @@ public class IlController {
     }
 
     @PostMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MessageResponse> update(@RequestBody IlRequest ilRequest) {
+    public ResponseEntity<IlResponse> update(@RequestBody IlRequest ilRequest) throws Exception {
         return new ResponseEntity<>(il.ilUpdate(ilRequest), HttpStatus.OK);
     }
 }

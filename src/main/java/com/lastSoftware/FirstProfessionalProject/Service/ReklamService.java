@@ -23,33 +23,29 @@ public class ReklamService implements IReklam {
     FileStorageService storageService;
 
     @Override
-    public String add(MultipartFile reklamBilgi, Long firma) {
+    public Reklam add(MultipartFile reklamBilgi, Long firma) throws Exception {
         try {
-            FileDB fileDB =storageService.store(reklamBilgi);
-            reklamRepository.save(iMapper.ReklamEntity(reklamBilgi,fileDB,firma));
-            return ConstantMessage.SUCCESS;
+            FileDB fileDB = storageService.store(reklamBilgi);
+            return reklamRepository.save(iMapper.ReklamEntity(reklamBilgi,fileDB,firma));
         } catch (IOException e) {
-            System.out.println(e);
-            return ConstantMessage.ERROR;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public String deleteById(String id) {
+    public String deleteById(String id) throws Exception {
         try {
             reklamRepository.deleteById(Long.valueOf(id));
             storageService.deleteFileById(id);
             return ConstantMessage.SUCCESS;
         }catch (Exception e){
-            return ConstantMessage.ERROR;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
     public List<Reklam> list() {
-            List<Reklam> reklamList =
-                    reklamRepository.findAll();
-            return reklamList;
+        return reklamRepository.findAll();
     }
 
     @Override

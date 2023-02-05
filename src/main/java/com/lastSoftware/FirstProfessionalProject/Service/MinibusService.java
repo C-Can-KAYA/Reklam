@@ -28,15 +28,11 @@ public class MinibusService implements IMinibus {
     MinibusRepository minibusRepository;
 
     @Override
-    public MessageResponse minibusAdd(MinibusBilgi minibusBilgi) {
-        MessageResponse response=new MessageResponse();
+    public Minibus minibusAdd(MinibusBilgi minibusBilgi) throws Exception {
         try {
-            minibusRepository.save(iMapper.MinibusEntity(minibusBilgi));
-            response.setMessage(ConstantMessage.SUCCESS);
-            return response;
+            return iMapper.MinibusEntity(minibusBilgi);
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
@@ -55,19 +51,16 @@ public class MinibusService implements IMinibus {
     }
 
     @Override
-    public Object findById(Long id) {
-        MessageResponse response=new MessageResponse();
+    public Object findById(Long id) throws Exception {
         try {
             return minibusRepository.findById(id);
         }catch (Exception e){
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public MessageResponse minibusUpdate(MinibusBilgi minibusBilgi) {
-        MessageResponse response=new MessageResponse();
+    public List<Minibus> minibusUpdate(MinibusBilgi minibusBilgi) throws Exception {
         try {
             minibusRepository.deleteByMinibusIdForReklam(minibusBilgi.getId());
             minibusRepository.deleteByMinibusIdForSofor(minibusBilgi.getId());
@@ -77,28 +70,25 @@ public class MinibusService implements IMinibus {
             }
             minibusRepository.minibusUpdateForCarAndHat(
                     minibusBilgi.getId(), minibusBilgi.getHat(),minibusBilgi.getIl(), minibusBilgi.getMarka(), minibusBilgi.getModel(), minibusBilgi.getPlaka(),true);
-            response.setMessage(ConstantMessage.SUCCESS);
-            return response;
+            minibusRepository.findByNumberPlate(minibusBilgi.getPlaka());
+            return minibusRepository.findByNumberPlate(minibusBilgi.getPlaka());
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public MessageResponse minibusReklamGuncelle(ReklamGuncelle reklamGuncelle) {
-        MessageResponse response=new MessageResponse();
+    public Boolean minibusReklamGuncelle(ReklamGuncelle reklamGuncelle) throws Exception {
         try {
             minibusRepository.minibusReklamGuncelle(reklamGuncelle.getPlaka(), reklamGuncelle.getChecked());
-            response.setMessage(ConstantMessage.SUCCESS);
+            return reklamGuncelle.getChecked();
         }catch (Exception e){
-            response.setMessage(e.toString());
+            throw new Exception(ConstantMessage.ERROR);
         }
-        return response;
     }
 
     @Override
-    public MessageResponse deleteById(Long id) {
+    public MessageResponse deleteById(Long id) throws Exception {
         MessageResponse response=new MessageResponse();
         try {
             minibusRepository.deleteByMinibusIdForSofor(id);
@@ -107,8 +97,7 @@ public class MinibusService implements IMinibus {
             response.setMessage(ConstantMessage.SUCCESS);
             return response;
         } catch (Exception e) {
-            response.setMessage(e.toString());
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 

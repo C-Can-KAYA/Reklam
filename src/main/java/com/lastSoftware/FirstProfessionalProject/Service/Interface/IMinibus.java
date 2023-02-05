@@ -10,13 +10,13 @@ import com.lastSoftware.FirstProfessionalProject.Web.Response.ReklamResponseNumb
 import java.util.List;
 
 public interface IMinibus {
-    MessageResponse minibusAdd(MinibusBilgi minibusBilgi);
-    MessageResponse deleteById(Long id);
+    Minibus minibusAdd(MinibusBilgi minibusBilgi) throws Exception;
+    MessageResponse deleteById(Long id) throws Exception;
     List<ReklamResponseNumberPlate> findByNumberPlate(String number);
     List<Minibus> minibusList();
     Enum<Hat>[] ilList();
     List<String> hatList(String il);
-    Object findById(Long id);
-    MessageResponse minibusUpdate(MinibusBilgi minibusBilgi);
-    MessageResponse minibusReklamGuncelle(ReklamGuncelle reklamGuncelle);
+    Object findById(Long id) throws Exception;
+    List<Minibus> minibusUpdate(MinibusBilgi minibusBilgi) throws Exception;
+    Boolean minibusReklamGuncelle(ReklamGuncelle reklamGuncelle) throws Exception;
 }

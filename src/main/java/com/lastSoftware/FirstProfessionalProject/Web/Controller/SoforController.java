@@ -21,8 +21,7 @@ public class SoforController
     ISofor sofor;
 
     @PostMapping(path = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> insert(@RequestBody SoforBilgi soforBilgi)
-    {
+    public ResponseEntity<Object> insert(@RequestBody SoforBilgi soforBilgi) throws Exception {
         return new ResponseEntity<>(sofor.soforAdd(soforBilgi), HttpStatus.OK);
     }
 
@@ -38,7 +37,7 @@ public class SoforController
     }
 
     @PostMapping(path="/updateSofor")
-    public ResponseEntity<Object> updateSofor(@RequestBody SoforBilgi soforBilgi){
+    public ResponseEntity<Object> updateSofor(@RequestBody SoforBilgi soforBilgi) throws Exception {
         return new ResponseEntity<>(sofor.updateSofor(soforBilgi), HttpStatus.OK);
     }
 
@@ -48,12 +47,12 @@ public class SoforController
     }
 
     @PostMapping(path="/deleteById/{id}")
-    public ResponseEntity<Object> deleteById(@PathVariable Long id){
+    public ResponseEntity<Object> deleteById(@PathVariable Long id) throws Exception {
         return new ResponseEntity<>(sofor.deleteById(id), HttpStatus.OK);
     }
 
     @PostMapping(path="/deleteByTckn/{tckn}")
-    public ResponseEntity<Object> deleteByTckn(@PathVariable Long tckn){
+    public ResponseEntity<Object> deleteByTckn(@PathVariable Long tckn) throws Exception {
         return new ResponseEntity<>(sofor.deleteByTckn(tckn), HttpStatus.OK);
     }
 }

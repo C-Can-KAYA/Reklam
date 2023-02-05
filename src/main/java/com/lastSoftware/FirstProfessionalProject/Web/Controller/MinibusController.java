@@ -1,5 +1,6 @@
 package com.lastSoftware.FirstProfessionalProject.Web.Controller;
 
+import com.lastSoftware.FirstProfessionalProject.Entity.Minibus;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IMinibus;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.MinibusBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.ReklamGuncelle;
@@ -23,22 +24,22 @@ public class MinibusController {
     @Autowired
     IMinibus minibus;
     @PostMapping(path = "/insert", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MessageResponse> insert(@RequestBody MinibusBilgi minibusBilgi) {
+    public ResponseEntity<Minibus> insert(@RequestBody MinibusBilgi minibusBilgi) throws Exception {
         return new ResponseEntity<>(minibus.minibusAdd(minibusBilgi), HttpStatus.OK);
     }
 
     @PostMapping(path = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MessageResponse> update(@RequestBody MinibusBilgi minibusBilgi) {
+    public ResponseEntity<List<Minibus>> update(@RequestBody MinibusBilgi minibusBilgi) throws Exception {
         return new ResponseEntity<>(minibus.minibusUpdate(minibusBilgi), HttpStatus.OK);
     }
 
     @PostMapping(path = "/guncel", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<MessageResponse> updateGuncel(@RequestBody ReklamGuncelle reklamGuncelle) {
+    public ResponseEntity<Boolean> updateGuncel(@RequestBody ReklamGuncelle reklamGuncelle) throws Exception {
         return new ResponseEntity<>(minibus.minibusReklamGuncelle(reklamGuncelle), HttpStatus.OK);
     }
 
     @PostMapping(path = "/deleteById/{id}")
-    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id) {
+    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id) throws Exception {
         return new ResponseEntity<>(minibus.deleteById(id), HttpStatus.OK);
     }
 
@@ -58,7 +59,7 @@ public class MinibusController {
     }
 
     @GetMapping(path = "/findById/{number}")
-    public ResponseEntity<Object> findById(@PathVariable Long number) {
+    public ResponseEntity<Object> findById(@PathVariable Long number) throws Exception {
         return new ResponseEntity<>(minibus.findById(number), HttpStatus.OK);
     }
 

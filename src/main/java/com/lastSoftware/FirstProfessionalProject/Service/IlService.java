@@ -5,7 +5,9 @@ import com.lastSoftware.FirstProfessionalProject.Entity.Iller;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.IllerRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IIller;
+import com.lastSoftware.FirstProfessionalProject.Service.Interface.ProjectMapper;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.IlRequest;
+import com.lastSoftware.FirstProfessionalProject.Web.Response.IlResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,42 +21,38 @@ public class IlService implements IIller {
     @Autowired
     IMapper iMapper;
 
+        @Autowired
+    private ProjectMapper mapper;
+
     @Override
-    public MessageResponse addIl(IlRequest ilRequest) {
-        MessageResponse response = new MessageResponse();
+    public IlResponse addIl(IlRequest ilRequest) throws Exception {
         try {
-            response.setMessage(ConstantMessage.SUCCESS);
             illerRepository.save(iMapper.IllerEntity(ilRequest));
-            return response;
+            return mapper.ilRequestToIlResponse(ilRequest);
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
     @Override
-    public MessageResponse deleteById(Long id) {
+    public MessageResponse deleteById(Long id) throws Exception {
         MessageResponse response = new MessageResponse();
         try {
             illerRepository.deleteById(id);
             response.setMessage(ConstantMessage.SUCCESS);
-        }catch (Exception e){
-            response.setMessage(ConstantMessage.ERROR);
             return response;
+        }catch (Exception e){
+            throw new Exception(ConstantMessage.ERROR);
         }
-        return null;
     }
 
     @Override
-    public MessageResponse ilUpdate(IlRequest ilRequest) {
-        MessageResponse response = new MessageResponse();
+    public IlResponse ilUpdate(IlRequest ilRequest) throws Exception {
         try {
-            response.setMessage(ConstantMessage.SUCCESS);
             illerRepository.save(iMapper.IllerEntity(ilRequest));
-            return response;
+            return mapper.ilRequestToIlResponse(ilRequest);
         } catch (Exception e) {
-            response.setMessage(ConstantMessage.ERROR);
-            return response;
+            throw new Exception(ConstantMessage.ERROR);
         }
     }
 
