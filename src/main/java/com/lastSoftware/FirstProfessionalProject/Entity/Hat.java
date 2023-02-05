@@ -28,5 +28,8 @@ public class Hat {
     )
     private Long id;
     private String hatAdi;
+    @Column(
+            name = "plakaKod"
+    )
     private Integer plakaKod;
 }

@@ -32,5 +32,8 @@ public class Iller {
     @Id
     private Long id;
     private String ilAdi;
+    @Column(
+            name = "plakaKod"
+    )
     private Integer plakaKod;
 }
