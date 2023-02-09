@@ -1,11 +1,11 @@
 package com.lastSoftware.FirstProfessionalProject.Service;
 
 import com.lastSoftware.FirstProfessionalProject.Constants.ConstantMessage;
+import com.lastSoftware.FirstProfessionalProject.Entity.Adres;
 import com.lastSoftware.FirstProfessionalProject.Entity.Firma;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.FirmaRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IFirma;
-import com.lastSoftware.FirstProfessionalProject.Service.Interface.ProjectMapper;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.FirmaBilgi;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.FirmaResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
@@ -21,16 +21,27 @@ public class FirmaService implements IFirma {
     IMapper iMapper;
     @Autowired
     FirmaRepository firmaRepository;
-    @Autowired
-    private ProjectMapper mapper;
     @Override
     public FirmaResponse firmaAdd(FirmaBilgi firmaBilgi) throws Exception {
         try {
             firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
-            return mapper.firmaBilgiToFirmaResponse(firmaBilgi);
+            return getFirmaBilgi(firmaBilgi);
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }
+    }
+
+    public FirmaResponse getFirmaBilgi(FirmaBilgi firmaBilgi){
+        FirmaResponse firma = new FirmaResponse();
+        firma.setId(firmaBilgi.getId());
+        firma.setFirmaAd(firmaBilgi.getFirmaAd());
+        firma.setSicilNo(firmaBilgi.getSicilNo());
+        Adres adres = new Adres();
+        adres.setIl(firmaBilgi.getAdres().getIl());
+        adres.setIlce(firmaBilgi.getAdres().getIlce());
+        adres.setPostaKodu(firmaBilgi.getAdres().getPostaKodu());
+        firma.setAdres(adres);
+        return firma;
     }
 
     @Override
@@ -54,7 +65,7 @@ public class FirmaService implements IFirma {
     public FirmaResponse updateFirma(FirmaBilgi firmaBilgi) throws Exception {
         try {
             firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
-            return mapper.firmaBilgiToFirmaResponse(firmaBilgi);
+            return getFirmaBilgi(firmaBilgi);
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }

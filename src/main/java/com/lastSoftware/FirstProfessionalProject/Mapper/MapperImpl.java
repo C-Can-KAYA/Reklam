@@ -62,7 +62,7 @@ public class MapperImpl implements IMapper {
     public Firma firmaEntitiy(FirmaBilgi firmaBilgi) {
         Firma firma = new Firma();
         firma.setId(firmaBilgi.getId());
-        firma.setFirmaAd(firmaBilgi.getAd());
+        firma.setFirmaAd(firmaBilgi.getFirmaAd());
         firma.setSicilNo(firmaBilgi.getSicilNo());
         Adres adres = new Adres();
         adres.setIl(firmaBilgi.getAdres().getIl());

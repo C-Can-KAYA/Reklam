@@ -5,7 +5,6 @@ import com.lastSoftware.FirstProfessionalProject.Entity.Hat;
 import com.lastSoftware.FirstProfessionalProject.Mapper.IMapper;
 import com.lastSoftware.FirstProfessionalProject.Repository.HatRepository;
 import com.lastSoftware.FirstProfessionalProject.Service.Interface.IHat;
-import com.lastSoftware.FirstProfessionalProject.Service.Interface.ProjectMapper;
 import com.lastSoftware.FirstProfessionalProject.Web.Request.HatRequest;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.HatResponse;
 import com.lastSoftware.FirstProfessionalProject.Web.Response.MessageResponse;
@@ -22,17 +21,22 @@ public class HatService implements IHat {
     @Autowired
     IMapper iMapper;
 
-        @Autowired
-    private ProjectMapper mapper;
-
     @Override
     public HatResponse hatAdd(HatRequest hatRequest) throws Exception {
         try {
             hatRepository.save(iMapper.HatEntity(hatRequest));
-            return mapper.hatRequestToHatResponse(hatRequest);
+            return getHatRespnse(hatRequest);
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }
+    }
+
+    public HatResponse getHatRespnse(HatRequest hatRequest){
+        HatResponse hat = new HatResponse();
+        hat.setHatAdi(hatRequest.getHatAdi());
+        hat.setId(hatRequest.getId());
+        hat.setPlakaKod(hatRequest.getPlakaKod());
+        return hat;
     }
 
     @Override
@@ -69,7 +73,7 @@ public class HatService implements IHat {
     public HatResponse updateHat(HatRequest hatRequest) throws Exception {
         try {
             hatRepository.save(iMapper.HatEntity(hatRequest));
-            return mapper.hatRequestToHatResponse(hatRequest);
+            return getHatRespnse(hatRequest);
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }

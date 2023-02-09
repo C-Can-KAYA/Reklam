@@ -10,7 +10,7 @@ import com.lastSoftware.FirstProfessionalProject.Entity.Adres;
 @NoArgsConstructor
 public class FirmaResponse {
     private Long id;
-    private String ad;
+    private String firmaAd;
     private String sicilNo;
     private Adres Adres;
 }
