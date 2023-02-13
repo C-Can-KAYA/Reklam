@@ -24,17 +24,17 @@ public class HatService implements IHat {
     @Override
     public HatResponse hatAdd(HatRequest hatRequest) throws Exception {
         try {
-            hatRepository.save(iMapper.HatEntity(hatRequest));
-            return getHatRespnse(hatRequest);
+            Hat hat = hatRepository.save(iMapper.HatEntity(hatRequest));
+            return getHatRespnse(hatRequest,hat.getId());
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }
     }
 
-    public HatResponse getHatRespnse(HatRequest hatRequest){
+    public HatResponse getHatRespnse(HatRequest hatRequest,Long id){
         HatResponse hat = new HatResponse();
         hat.setHatAdi(hatRequest.getHatAdi());
-        hat.setId(hatRequest.getId());
+        hat.setId(id);
         hat.setPlakaKod(hatRequest.getPlakaKod());
         return hat;
     }
@@ -72,8 +72,8 @@ public class HatService implements IHat {
     @Override
     public HatResponse updateHat(HatRequest hatRequest) throws Exception {
         try {
-            hatRepository.save(iMapper.HatEntity(hatRequest));
-            return getHatRespnse(hatRequest);
+            Hat hat = hatRepository.save(iMapper.HatEntity(hatRequest));
+            return getHatRespnse(hatRequest, hat.getId());
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }

@@ -24,11 +24,24 @@ public class FirmaService implements IFirma {
     @Override
     public FirmaResponse firmaAdd(FirmaBilgi firmaBilgi) throws Exception {
         try {
-            firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
-            return getFirmaBilgi(firmaBilgi);
+            Firma firma = firmaRepository.save(iMapper.firmaEntitiy(firmaBilgi));
+            return getFirmaBilgi(firmaBilgi,firma.getId());
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }
+    }
+
+    public FirmaResponse getFirmaBilgi(FirmaBilgi firmaBilgi,Long id){
+        FirmaResponse firma = new FirmaResponse();
+        firma.setId(id);
+        firma.setFirmaAd(firmaBilgi.getFirmaAd());
+        firma.setSicilNo(firmaBilgi.getSicilNo());
+        Adres adres = new Adres();
+        adres.setIl(firmaBilgi.getAdres().getIl());
+        adres.setIlce(firmaBilgi.getAdres().getIlce());
+        adres.setPostaKodu(firmaBilgi.getAdres().getPostaKodu());
+        firma.setAdres(adres);
+        return firma;
     }
 
     public FirmaResponse getFirmaBilgi(FirmaBilgi firmaBilgi){

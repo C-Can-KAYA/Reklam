@@ -22,16 +22,16 @@ public class SoforService implements ISofor {
     @Override
     public SoforResponse soforAdd(SoforBilgi sofor) throws Exception {
         try {
-            soforRepository.save(iMapper.SoforEntitiy(sofor));
-            return getSoforResponse(sofor);
+            Sofor soforSave = soforRepository.save(iMapper.SoforEntitiy(sofor));
+            return getSoforResponse(sofor,soforSave.getId());
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }
     }
 
-    public SoforResponse getSoforResponse(SoforBilgi soforBilgi){
+    public SoforResponse getSoforResponse(SoforBilgi soforBilgi,Long id){
         SoforResponse sofor = new SoforResponse();
-        sofor.setId(soforBilgi.getId());
+        sofor.setId(id);
         sofor.setAd(soforBilgi.getAd());
         sofor.setSoyad(soforBilgi.getSoyad());
         sofor.setTckn(soforBilgi.getTckn());
@@ -67,8 +67,8 @@ public class SoforService implements ISofor {
     @Override
     public SoforResponse updateSofor(SoforBilgi soforBilgi) throws Exception {
         try {
-            soforRepository.save(iMapper.SoforEntitiy(soforBilgi));
-            return getSoforResponse(soforBilgi);
+            Sofor sofor = soforRepository.save(iMapper.SoforEntitiy(soforBilgi));
+            return getSoforResponse(soforBilgi,sofor.getId());
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }
