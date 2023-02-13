@@ -8,6 +8,6 @@ import java.util.List;
 public interface IReklam {
     Reklam add(MultipartFile reklamBilgi, Long firma) throws Exception;
     String deleteById(String id) throws Exception;
-    List<Reklam> list();
+    List<Reklam> list() throws Exception;
     Object findById(Long id);
 }

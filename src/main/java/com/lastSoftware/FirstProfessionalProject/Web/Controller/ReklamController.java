@@ -43,8 +43,7 @@ public class ReklamController {
     }
 
     @GetMapping(path = "/findAll")
-    public ResponseEntity<Object> findAll()
-    {
+    public ResponseEntity<Object> findAll() throws Exception {
         return new ResponseEntity<>(reklam.list(), HttpStatus.OK);
     }
 

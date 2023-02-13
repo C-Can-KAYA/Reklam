@@ -44,8 +44,12 @@ public class ReklamService implements IReklam {
     }
 
     @Override
-    public List<Reklam> list() {
-        return reklamRepository.findAll();
+    public List<Reklam> list() throws Exception {
+        try {
+            return reklamRepository.findAll();
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
 
     @Override
