@@ -30,7 +30,7 @@ public class MinibusService implements IMinibus {
     @Override
     public Minibus minibusAdd(MinibusBilgi minibusBilgi) throws Exception {
         try {
-            return iMapper.MinibusEntity(minibusBilgi);
+            return  minibusRepository.save(iMapper.MinibusEntity(minibusBilgi));
         } catch (Exception e) {
             throw new Exception(ConstantMessage.ERROR);
         }
@@ -119,7 +119,11 @@ public class MinibusService implements IMinibus {
     }
 
     @Override
-    public List<Minibus> minibusList() {
-        return minibusRepository.findAll();
+    public List<Minibus> minibusList() throws Exception {
+        try {
+            return minibusRepository.findAll();
+        }catch (Exception e) {
+            throw new Exception(e);
+        }
     }
 }

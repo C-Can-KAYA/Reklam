@@ -26,7 +26,9 @@ public class MapperImpl implements IMapper {
     @Override
     public Minibus MinibusEntity(MinibusBilgi minibusBilgi) {
         Minibus minibus = new Minibus();
-        minibus.setId(minibusBilgi.getId());
+        if (Objects.nonNull(minibusBilgi.getId())) {
+            minibus.setId(minibusBilgi.getId());
+        }
         minibus.setMarka(minibusBilgi.getMarka());
         minibus.setModel(minibusBilgi.getModel());
         minibus.setHat(minibusBilgi.getHat());
@@ -40,7 +42,7 @@ public class MapperImpl implements IMapper {
         minibus.setSofor(soforList);
         List<Reklam> reklamList = new ArrayList<>();
         for (Long reklamFor : minibusBilgi.getReklam()) {
-            Reklam reklam = reklamRepository.findByIdForReklam(Long.valueOf(reklamFor));
+            Reklam reklam = reklamRepository.findByIdForReklam(reklamFor);
             reklamList.add(reklam);
         }
         minibus.setReklam(reklamList);

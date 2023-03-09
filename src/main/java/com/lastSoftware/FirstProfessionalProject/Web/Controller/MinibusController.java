@@ -49,13 +49,13 @@ public class MinibusController {
     }
 
     @GetMapping(path = "/findAll")
-    public ResponseEntity<Object> findAll() {
+    public ResponseEntity<Object> findAll() throws Exception {
         return new ResponseEntity<>(minibus.minibusList(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findByNumberPlate/{number}")
     public ResponseEntity<List<ReklamResponseNumberPlate>> findByNumberPlate(@PathVariable String number) {
-        return new ResponseEntity<List<ReklamResponseNumberPlate>>(minibus.findByNumberPlate(number), HttpStatus.OK);
+        return new ResponseEntity<>(minibus.findByNumberPlate(number), HttpStatus.OK);
     }
 
     @GetMapping(path = "/findById/{number}")

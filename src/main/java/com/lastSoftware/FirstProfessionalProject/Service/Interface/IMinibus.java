@@ -13,7 +13,7 @@ public interface IMinibus {
     Minibus minibusAdd(MinibusBilgi minibusBilgi) throws Exception;
     MessageResponse deleteById(Long id) throws Exception;
     List<ReklamResponseNumberPlate> findByNumberPlate(String number);
-    List<Minibus> minibusList();
+    List<Minibus> minibusList() throws Exception;
     Enum<Hat>[] ilList();
     List<String> hatList(String il);
     Object findById(Long id) throws Exception;
