@@ -78,7 +78,7 @@ public class MapperImpl implements IMapper {
     public Reklam ReklamEntity(MultipartFile reklamBilgi, FileDB fileDB, Long id) {
         Reklam reklam = new Reklam();
         reklam.setAd(reklamBilgi.getOriginalFilename());
-        String reklamLink = "http://localhost:8080/reklam/findByIdFile/" + fileDB.getId();
+        String reklamLink = "https://reklamcilik.herokuapp.com/reklam/findByIdFile/" + fileDB.getId();
         reklam.setLink(reklamLink);
         reklam.setReklamId(fileDB.getId());
         Optional<Firma> firmaEkleme = firma.findById(id);
