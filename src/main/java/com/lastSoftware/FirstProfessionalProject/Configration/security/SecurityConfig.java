@@ -79,6 +79,8 @@ public class SecurityConfig {
                 .permitAll()
                 .antMatchers("/v2/**","/swagger-resources/**","/webjars/**","/swagger-ui.html","/csrf")
                 .permitAll()
+                .antMatchers("/reklam/**")
+                .permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
